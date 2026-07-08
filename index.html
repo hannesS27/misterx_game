@@ -282,14 +282,14 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 </div>
 
 <script>
-// ══ DATA ══
+// ══ DATA ══ (Codes von Kreisverkehr und Markant wurden getauscht!)
 const STATIONS = [
-  {id:1, name:'Albstraße',        desc:'Im Bushaltehäusle',   code:'4887', icon:'🏛️'},
-  {id:2, name:'Turnhalle',         desc:'Aufm Sportplatz',              code:'3959', icon:'🪑'},
-  {id:3, name:'SPIELPLATZ',   desc:'Aufm Klettergerüst',          code:'7674', icon:'🛝'},
-  {id:4, name:'Kreisverkehr Industriegebiet',   desc:'In der Mitte',           code:'2001', icon:'🚇'},
-  {id:5, name:'Markant',         desc:'An der Statue',         code:'5643', icon:'🌉'},
-  {id:6, name:'🚨',   desc:'🚨', code:'6712', icon:'💡'},
+  {id:1, name:'Albstraße',                      desc:'Im Bushaltehäusle',   code:'4887', icon:'🏛️'},
+  {id:2, name:'Turnhalle',                      desc:'Aufm Sportplatz',     code:'3959', icon:'🪑'},
+  {id:3, name:'SPIELPLATZ',                     desc:'Aufm Klettergerüst',  code:'7674', icon:'🛝'},
+  {id:4, name:'Kreisverkehr Industriegebiet',   desc:'In der Mitte',        code:'5643', icon:'🚇'}, // Zuvor 2001
+  {id:5, name:'Markant',                        desc:'An der Statue',       code:'2001', icon:'🌉'}, // Zuvor 5643
+  {id:6, name:'🚨',                             desc:'🚨',                  code:'6712', icon:'💡'},
 ];
 
 // ══ PUZZLE DATA ══
@@ -314,12 +314,6 @@ const EMOJI_SETS = [
     {emj:'👓⚡🧙', opts:['Herr der Ringe','Narnia','Harry Potter','Der Hobbit'], a:2, hint:'Zauberer-Saga'},
     {emj:'🐠🎤', opts:['Findet Nemo','Findet Dorie','Shrek','Toy Story'], a:1, hint:'Pixar-Fortsetzung'}
   ],
-  [
-    {emj:'🚗⚡🏎️', opts:['Transformers','Cars','Fast & Furious','Ralph'], a:1, hint:'Pixar über Autos'},
-    {emj:'🤖❤️', opts:['Terminator','WALL·E','Star Wars','Iron Man'], a:1, hint:'Süßer Pixar-Roboter'},
-    {emj:'🐼🥋', opts:['Kung Fu Panda','Madagascar','Zootopia','Shrek'], a:0, hint:'Kampfsport-Panda'},
-    {emj:'🧞‍♂️🕌', opts:['Aladdin','Mulan','Tarzan','Hercules'], a:0, hint:'Wunderlampe'}
-  ],
 ];
 
 // TYPE: ANAGRAMM (4 Wörter entschlüsseln, ~1-2 Min)
@@ -335,20 +329,7 @@ const ANAGRAM_SETS = [
     {word:'TREWET', answer:'WETTER', hint:'Sonne, Regen, Wind'},
     {word:'URDEFN', answer:'FREUND', hint:'Jemand den man mag'},
     {word:'TRIENW', answer:'WINTER', hint:'Kalte Jahreszeit'}
-  ],
-  [
-    {word:'MIHLEM', answer:'HIMMEL', hint:'Über uns'},
-    {word:'LABLUSSF', answer:'FUSSBALL', hint:'Sport mit rundem Ball'},
-    {word:'UHRSEB', answer:'BUERSH', hint:'---'}, // BURSCHE? B,U,R,S,C,H,E vs U,H,R,S,E,B = 6 vs 7 - Fehler, ersetze
-    {word:'USKEMI', answer:'MUSIK', hint:'---'}
-  ],
-];
-// Fix set 3 - let me use clean ones
-ANAGRAM_SETS[2] = [
-  {word:'MIHLEM', answer:'HIMMEL', hint:'Über uns'},
-  {word:'LABLUSSF', answer:'FUSSBALL', hint:'Sport mit rundem Ball'},
-  {word:'LCLAKHOEDOS', answer:'SCHOKOLADE', hint:'Süß und braun'},
-  {word:'KSIMU', answer:'MUSIK', hint:'Zum Hören'}
+  ]
 ];
 
 // TYPE: LOGIK-QUIZ (5 Fragen, ~1-2 Min)
@@ -359,21 +340,42 @@ const LOGIC_SETS = [
     {q:'Ein Zug fährt um 14:00 los\nund braucht 1h 30min.\nWann kommt er an?', opts:['15:00','15:30','16:00','16:30'], a:1},
     {q:'Du hast 3 Äpfel und nimmst 2 weg.\nWie viele hast DU jetzt?', opts:['1','2','3','5'], a:1},
     {q:'Welches Wort passt NICHT?', opts:['Apfel','Birne','Möhre','Kirsche'], a:2}
+  ]
+];
+
+// 🌟 NEU: TYPE: ALLGEMEINWISSEN (Anspruchsvoll, 4 Fragen)
+const KNOWLEDGE_SETS = [
+  [
+    {q:'Welches Element hat das chemische Symbol "Fe"?', opts:['Fluor','Eisen','Fermium','Feldspat'], a:1},
+    {q:'Wie viele Zähne hat ein erwachsener Mensch normalerweise (ohne Weisheitszähne)?', opts:['28','30','32','34'], a:0},
+    {q:'Wer schrieb das weltberühmte Werk "Faust"?', opts:['Friedrich Schiller','Heinrich Heine','Johann Wolfgang von Goethe','Gotthold Lessing'], a:2},
+    {q:'Welches ist das flächenmäßig kleinste Bundesland der Bundesrepublik Deutschland?', opts:['Saarland','Bremen','Hamburg','Berlin'], a:1}
   ],
   [
-    {q:'Wenn Montag = 1, welche Zahl ist Samstag?', opts:['5','6','7','8'], a:1},
-    {q:'Maja ist größer als Lisa.\nLisa ist größer als Tim.\nWer ist am größten?', opts:['Maja','Lisa','Tim','Alle gleich'], a:0},
-    {q:'6 Kinder teilen 24 Bonbons fair.\nWie viele bekommt jedes?', opts:['3','4','5','6'], a:1},
-    {q:'Was kommt als Nächstes?\nROT, GELB, GRÜN, ROT, GELB, ?', opts:['ROT','BLAU','GRÜN','GELB'], a:2},
-    {q:'Ein Vater hat 4 Söhne.\nJeder Sohn hat eine Schwester.\nWie viele Kinder hat der Vater?', opts:['4','5','6','8'], a:1}
-  ],
+    {q:'In welchem Jahr fiel die Berliner Mauer?', opts:['1985','1987','1989','1991'], a:2},
+    {q:'Welches Organ des menschlichen Körpers verbraucht die meiste Energie?', opts:['Das Herz','Die Leber','Die Muskeln','Das Gehirn'], a:3},
+    {q:'Wie viele Planeten in unserem Sonnensystem haben ein Ringsystem?', opts:['Nur einer (Saturn)','Zwei','Vier','Alle'], a:2},
+    {q:'Wer gilt als der Erfinder des Buchdrucks mit beweglichen Lettern?', opts:['Johannes Gutenberg','Nikola Tesla','Leonardo da Vinci','Albert Einstein'], a:0}
+  ]
+];
+
+// 🌟 NEU: TYPE: SCHÄTZFRAGEN (Zahleneingabe, 3 Fragen)
+const GUESS_SETS = [
   [
-    {q:'Ein halbes Jahr hat wie viele Monate?', opts:['3','5','6','12'], a:2},
-    {q:'Welches Tier ist KEIN Säugetier?', opts:['Hund','Adler','Pferd','Delfin'], a:1},
-    {q:'Wenn jetzt 15:30 ist,\nwie spät in 45 Minuten?', opts:['16:00','16:15','16:30','17:00'], a:1},
-    {q:'Wie viele Seiten hat ein Würfel?', opts:['4','5','6','8'], a:2},
-    {q:'Welche Zahl ist das Doppelte von 27?', opts:['48','52','54','56'], a:2}
-  ],
+    {q:'Wie viele Meter ist der Eiffelturm in Paris hoch (inkl. Antenne)?', a:330, hint:'Tipp: Zwischen 250 und 400 Metern.'},
+    {q:'In welchem Jahr sank die berühmte Titanic im Nordatlantik?', a:1912, hint:'Tipp: Anfang des 20. Jahrhunderts.'},
+    {q:'Wie viele Knochen hat das menschliche Skelett eines Erwachsenen ungefähr?', a:206, hint:'Tipp: Knapp über 200.'}
+  ]
+];
+
+// 🌟 NEU: TYPE: GEOGRAFIE (4 Fragen)
+const GEO_SETS = [
+  [
+    {q:'Welches Land hat die längste Küstenlinie der Welt?', opts:['Russland','Kanada','Australien','USA'], a:1},
+    {q:'Wie heißt die Hauptstadt von Australien?', opts:['Sydney','Melbourne','Canberra','Brisbane'], a:2},
+    {q:'Welcher Fluss ist der wasserreichste Fluss der Erde?', opts:['Nil','Amazonas','Jangtsekiang','Mississippi'], a:1},
+    {q:'Durch welches europäische Land fließt der Fluss Tejo?', opts:['Spanien & Portugal','Italien','Frankreich','Griechenland'], a:0}
+  ]
 ];
 
 // TYPE: MEMORY (6 Paare)
@@ -479,7 +481,7 @@ function submitCode(){
 }
 
 // ══ PUZZLE MODAL ══
-const PUZZLE_TYPES = ['math','emoji','anagram','logic','memory'];
+const PUZZLE_TYPES = ['math','emoji','anagram','logic','memory','knowledge','guess','geo'];
 let currentPuzzleType = null;
 let currentPuzzleData = null;
 let puzzleStep = 0;
@@ -498,6 +500,9 @@ function openPuzzleModal(){
     anagram:{icon:'🔤', name:'ANAGRAMM-SPRINT', desc:'Entschlüsselt 4 Wörter. Buchstaben sind vertauscht!'},
     logic:{icon:'🧩', name:'LOGIK-QUIZ', desc:'5 knifflige Fragen — gut überlegen!'},
     memory:{icon:'🎴', name:'MEMORY', desc:'Findet alle 6 Paare. Karten umdrehen und merken!'},
+    knowledge:{icon:'🧠', name:'ALLGEMEINWISSEN', desc:'Zeigt, was ihr im Kopf habt! Anspruchsvolles Trivia-Quiz.'},
+    guess:{icon:'⚖️', name:'SCHÄTZ-DUELL', desc:'Gebt eine exakte Zahl ein. Es muss genau stimmen!'},
+    geo:{icon:'🌍', name:'WELTREISE-QUIZ', desc:'Geografie-Fragen für echte Weltenbummler.'}
   }[type];
 
   document.getElementById('modalBody').innerHTML = `
@@ -521,6 +526,9 @@ function openPuzzleModal(){
   else if(type==='emoji'){ currentPuzzleData = EMOJI_SETS[Math.floor(Math.random()*EMOJI_SETS.length)]; renderEmoji(); }
   else if(type==='anagram'){ currentPuzzleData = ANAGRAM_SETS[Math.floor(Math.random()*ANAGRAM_SETS.length)]; renderAnagram(); }
   else if(type==='logic'){ currentPuzzleData = LOGIC_SETS[Math.floor(Math.random()*LOGIC_SETS.length)]; renderLogic(); }
+  else if(type==='knowledge'){ currentPuzzleData = KNOWLEDGE_SETS[Math.floor(Math.random()*KNOWLEDGE_SETS.length)]; renderKnowledge(); }
+  else if(type==='guess'){ currentPuzzleData = GUESS_SETS[Math.floor(Math.random()*GUESS_SETS.length)]; renderGuess(); }
+  else if(type==='geo'){ currentPuzzleData = GEO_SETS[Math.floor(Math.random()*GEO_SETS.length)]; renderGeo(); }
   else if(type==='memory'){ initMemory(); renderMemory(); }
 
   document.getElementById('modalOverlay').classList.add('active');
@@ -657,6 +665,100 @@ function checkLogic(chosen, correct){
   } else {
     opts[chosen].classList.add('wrong');
     fb.textContent='✗ Überlegt nochmal!'; fb.className='puz-fb err'; fb.style.display='block';
+    setTimeout(()=>{ opts[chosen].classList.remove('wrong'); fb.style.display='none'; }, 1200);
+  }
+}
+
+// ── ALLGEMEINWISSEN (KNOWLEDGE) ──
+function renderKnowledge(){
+  const c = document.getElementById('puzzleContainer');
+  const total = currentPuzzleData.length;
+  if(puzzleStep >= total){ puzzleSolved(); return; }
+  const cur = currentPuzzleData[puzzleStep];
+  c.innerHTML = `
+    ${progressDotsHTML(total, puzzleStep)}
+    <div class="puz-q-label">WISSEN ${puzzleStep+1} / ${total}</div>
+    <div class="puz-q">${cur.q}</div>
+    <div class="puz-opts">
+      ${cur.opts.map((o,i)=>`<div class="puz-opt" onclick="checkKnowledge(${i},${cur.a})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}
+    </div>
+    <div class="puz-fb" id="puzFb"></div>
+  `;
+}
+function checkKnowledge(chosen, correct){
+  const fb = document.getElementById('puzFb');
+  const opts = document.querySelectorAll('.puz-opt');
+  if(chosen===correct){
+    opts[chosen].classList.add('correct');
+    opts.forEach(o=>o.style.pointerEvents='none');
+    fb.textContent='✓ KORREKT!'; fb.className='puz-fb ok'; fb.style.display='block';
+    setTimeout(()=>{ puzzleStep++; renderKnowledge(); }, 800);
+  } else {
+    opts[chosen].classList.add('wrong');
+    fb.textContent='✗ Falsche Antwort!'; fb.className='puz-fb err'; fb.style.display='block';
+    setTimeout(()=>{ opts[chosen].classList.remove('wrong'); fb.style.display='none'; }, 1200);
+  }
+}
+
+// ── SCHÄTZFRAGEN (GUESS) ──
+function renderGuess(){
+  const c = document.getElementById('puzzleContainer');
+  const total = currentPuzzleData.length;
+  if(puzzleStep >= total){ puzzleSolved(); return; }
+  const cur = currentPuzzleData[puzzleStep];
+  c.innerHTML = `
+    ${progressDotsHTML(total, puzzleStep)}
+    <div class="puz-q-label">SCHÄTZEN ${puzzleStep+1} / ${total}</div>
+    <div class="puz-q">${cur.q}</div>
+    <div class="puz-hint"><span>💡</span> ${cur.hint}</div>
+    <div class="puz-input-wrap">
+      <input type="number" class="puz-input" id="puzInp" placeholder="Wert..." autofocus>
+      <button class="puz-input-submit" onclick="checkGuess(${cur.a})">OK</button>
+    </div>
+    <div class="puz-fb" id="puzFb"></div>
+  `;
+  setTimeout(()=>{ const i=document.getElementById('puzInp'); if(i){i.focus(); i.addEventListener('keydown',e=>{ if(e.key==='Enter') checkGuess(cur.a); });}}, 50);
+}
+function checkGuess(correct){
+  const v = parseInt(document.getElementById('puzInp').value);
+  const fb = document.getElementById('puzFb');
+  if(v===correct){
+    fb.textContent='✓ EXAKT GETROFFEN!'; fb.className='puz-fb ok'; fb.style.display='block';
+    setTimeout(()=>{ puzzleStep++; renderGuess(); }, 800);
+  } else {
+    fb.textContent = v < correct ? '✗ Zu niedrig! Versuchs noch einmal.' : '✗ Zu hoch! Versuchs noch einmal.';
+    fb.className='puz-fb err'; fb.style.display='block';
+    setTimeout(()=>{ fb.style.display='none'; const i=document.getElementById('puzInp'); if(i){i.focus();}}, 1400);
+  }
+}
+
+// ── GEOGRAFIE (GEO) ──
+function renderGeo(){
+  const c = document.getElementById('puzzleContainer');
+  const total = currentPuzzleData.length;
+  if(puzzleStep >= total){ puzzleSolved(); return; }
+  const cur = currentPuzzleData[puzzleStep];
+  c.innerHTML = `
+    ${progressDotsHTML(total, puzzleStep)}
+    <div class="puz-q-label">GEOGRAFIE ${puzzleStep+1} / ${total}</div>
+    <div class="puz-q">${cur.q}</div>
+    <div class="puz-opts">
+      ${cur.opts.map((o,i)=>`<div class="puz-opt" onclick="checkGeo(${i},${cur.a})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}
+    </div>
+    <div class="puz-fb" id="puzFb"></div>
+  `;
+}
+function checkGeo(chosen, correct){
+  const fb = document.getElementById('puzFb');
+  const opts = document.querySelectorAll('.puz-opt');
+  if(chosen===correct){
+    opts[chosen].classList.add('correct');
+    opts.forEach(o=>o.style.pointerEvents='none');
+    fb.textContent='✓ RICHTIG!'; fb.className='puz-fb ok'; fb.style.display='block';
+    setTimeout(()=>{ puzzleStep++; renderGeo(); }, 800);
+  } else {
+    opts[chosen].classList.add('wrong');
+    fb.textContent='✗ Falsch! Karte falsch gelesen.'; fb.className='puz-fb err'; fb.style.display='block';
     setTimeout(()=>{ opts[chosen].classList.remove('wrong'); fb.style.display='none'; }, 1200);
   }
 }
@@ -862,4 +964,3 @@ function toast(msg, err){
 </script>
 </body>
 </html>
-
