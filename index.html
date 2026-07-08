@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>MISTER X // TERMINAL</title>
+<title>MISTER X // TERMINAL MAX</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
 :root{
@@ -140,16 +140,16 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .puzzle-intro-desc{font-size:.75rem;color:var(--w);line-height:1.4;}
 
 .puzzle-progress{display:flex;gap:4px;justify-content:center;margin-bottom:14px;}
-.pp-dot{width:24px;height:6px;background:var(--gdk);border:1px solid var(--gray);}
+.pp-dot{width:21px;height:6px;background:var(--gdk);border:1px solid var(--gray);}
 .pp-dot.done{background:var(--g);border-color:var(--g);}
 .pp-dot.current{background:var(--ora);border-color:var(--ora);animation:blinkd 1s infinite;}
 @keyframes blinkd{0%,100%{opacity:1}50%{opacity:.3}}
 
 .puz-q-label{font-size:.7rem;letter-spacing:2px;color:var(--gd);text-align:center;margin-bottom:8px;}
-.puz-q{font-size:.95rem;color:var(--w);line-height:1.6;text-align:center;margin-bottom:12px;white-space:pre-line;}
-.puz-q-big{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:700;color:var(--g);text-shadow:var(--glow);text-align:center;margin-bottom:16px;}
+.puz-q{font-size:.92rem;color:var(--w);line-height:1.6;text-align:center;margin-bottom:12px;white-space:pre-line;}
+.puz-q-big{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;color:var(--g);text-shadow:var(--glow);text-align:center;margin-bottom:16px;}
 .puz-opts{display:flex;flex-direction:column;gap:8px;}
-.puz-opt{padding:12px 14px;border:1px solid var(--gdk);background:var(--bg);color:var(--w);font-family:'Share Tech Mono',monospace;font-size:.88rem;cursor:pointer;text-align:left;transition:all .2s;}
+.puz-opt{padding:12px 14px;border:1px solid var(--gdk);background:var(--bg);color:var(--w);font-family:'Share Tech Mono',monospace;font-size:.85rem;cursor:pointer;text-align:left;transition:all .2s;}
 .puz-opt:hover{border-color:var(--gd);background:var(--bg3);}
 .puz-opt.correct{border-color:var(--g);background:var(--gdk);color:var(--g);}
 .puz-opt.wrong{border-color:var(--red);background:rgba(255,51,51,.08);color:var(--red);}
@@ -165,10 +165,10 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .puz-hint{font-size:.75rem;color:var(--gray);text-align:center;margin-bottom:10px;}
 .puz-hint span{color:var(--ora);}
 
-.emoji-display{font-size:3rem;text-align:center;margin:14px 0;letter-spacing:10px;}
+.emoji-display{font-size:2.5rem;text-align:center;margin:14px 0;letter-spacing:6px;}
 
 .mem-board{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px;}
-.mem-card{aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:var(--gdk);border:2px solid var(--gd);font-size:1.8rem;cursor:pointer;transition:all .25s;user-select:none;}
+.mem-card{aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:var(--gdk);border:2px solid var(--gd);font-size:1.5rem;cursor:pointer;transition:all .25s;user-select:none;}
 .mem-card.flipped{background:var(--bg);border-color:var(--g);}
 .mem-card.matched{background:rgba(0,255,65,.12);border-color:var(--g);opacity:.7;cursor:default;}
 .mem-card:not(.flipped):not(.matched):hover{background:var(--bg3);}
@@ -205,7 +205,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <div id="screenRole" class="screen active">
   <div class="r-header">
     <div class="r-header-title">MISTER X</div>
-    <div class="r-header-sub">SPIELER-TERMINAL</div>
+    <div class="r-header-sub">SPIELER-TERMINAL MAX</div>
   </div>
 
   <div class="role-title">WÄHLE DEINE ROLLE</div>
@@ -282,118 +282,113 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 </div>
 
 <script>
-// ══ DATA ══ (Codes von Kreisverkehr und Markant wurden getauscht!)
+// ══ STATIONS ══
 const STATIONS = [
   {id:1, name:'Albstraße',                      desc:'Im Bushaltehäusle',   code:'4887', icon:'🏛️'},
   {id:2, name:'Turnhalle',                      desc:'Aufm Sportplatz',     code:'3959', icon:'🪑'},
   {id:3, name:'SPIELPLATZ',                     desc:'Aufm Klettergerüst',  code:'7674', icon:'🛝'},
-  {id:4, name:'Kreisverkehr Industriegebiet',   desc:'In der Mitte',        code:'5643', icon:'🚇'}, // Zuvor 2001
-  {id:5, name:'Markant',                        desc:'An der Statue',       code:'2001', icon:'🌉'}, // Zuvor 5643
+  {id:4, name:'Kreisverkehr Industriegebiet',   desc:'In der Mitte',        code:'5643', icon:'🚇'}, 
+  {id:5, name:'Markant',                        desc:'An der Statue',       code:'2001', icon:'🌉'}, 
   {id:6, name:'🚨',                             desc:'🚨',                  code:'6712', icon:'💡'},
 ];
 
-// ══ PUZZLE DATA ══
-// TYPE: MATHE-KETTE (5 Aufgaben, ~1-2 Min)
+// ══ HIGH DIFFICULTY PUZZLE DATA ══
+
+// 🧮 MATHE-MUSTER & KETTEN (Anspruchsvoll, 5 Stufen)
 const MATH_SETS = [
-  [{q:'8 + 15 − 7', a:16},{q:'6 × 7 + 5', a:47},{q:'100 ÷ 4 − 5', a:20},{q:'(12 + 3) × 2', a:30},{q:'81 ÷ 9 + 13', a:22}],
-  [{q:'14 + 28 − 11', a:31},{q:'9 × 6 − 4', a:50},{q:'144 ÷ 12', a:12},{q:'(20 − 5) × 3', a:45},{q:'7 × 8 + 2', a:58}],
-  [{q:'50 − 17 + 8', a:41},{q:'6 × 9 − 14', a:40},{q:'120 ÷ 5 + 7', a:31},{q:'(25 + 5) ÷ 6', a:5},{q:'13 × 3', a:39}],
+  [
+    {q:'Setze die logische Reihe fort:\n2, 6, 14, 30, ?', a:62},
+    {q:'Berechne das Ergebnis:\n12 × 13 − 46', a:110},
+    {q:'Finde die fehlende Zahl:\n4, 9, 25, 49, 121, ?', a:169}, // Quadratzahlen von Primzahlen
+    {q:'Berechne:\n(180 ÷ 5) × 3 − 12', a:96},
+    {q:'Wie hoch ist die Summe aller Primzahlen zwischen 1 und 20?', a:77} // 2+3+5+7+11+13+17+19
+  ],
+  [
+    {q:'Setze die logische Reihe fort:\n3, 5, 9, 17, 33, ?', a:65},
+    {q:'Berechne das Ergebnis:\n15 × 14 ÷ 6', a:35},
+    {q:'Finde das x:\n3x + 17 = 80', a:21},
+    {q:'Berechne:\n2 ^ 6 − (5 × 7)', a:29},
+    {q:'Ein Würfel hat ein Gesamtvolumen von 64 cm³. Wie lang ist eine Kante in cm?', a:4}
+  ]
 ];
 
-// TYPE: EMOJI-RÄTSEL (4 Filme raten, ~1-2 Min)
+// 🎬 ADVANCED EMOJI & POPKULTUR (5 Stufen)
 const EMOJI_SETS = [
   [
-    {emj:'🦁👑', opts:['Dschungelbuch','König der Löwen','Madagascar','Ice Age'], a:1, hint:'Disney-Film'},
-    {emj:'⭐⚔️🚀', opts:['Star Trek','Guardians','Star Wars','Interstellar'], a:2, hint:'Weltraum-Saga'},
-    {emj:'🐟🔍', opts:['Der kleine Fisch','Findet Nemo','Shark Tale','Arielle'], a:1, hint:'Pixar-Film'},
-    {emj:'❄️👸', opts:['Die Eiskönigin','Schneewittchen','Cinderella','Rapunzel'], a:0, hint:'Disney-Prinzessin'}
-  ],
-  [
-    {emj:'🕷️👦', opts:['Batman','Iron Man','Spider-Man','Hulk'], a:2, hint:'Marvel-Held'},
-    {emj:'🦖🏝️', opts:['Jumanji','Jurassic Park','Kong','Godzilla'], a:1, hint:'Dinosaurier-Film'},
-    {emj:'👓⚡🧙', opts:['Herr der Ringe','Narnia','Harry Potter','Der Hobbit'], a:2, hint:'Zauberer-Saga'},
-    {emj:'🐠🎤', opts:['Findet Nemo','Findet Dorie','Shrek','Toy Story'], a:1, hint:'Pixar-Fortsetzung'}
-  ],
+    {emj:'☕✈️🕵️‍♂️🏢', opts:['Inception','Shutter Island','Tenet','Mission Impossible'], a:0, hint:'Ein Kreisel bestimmt die Realität.'},
+    {emj:'👨‍💼🧼🥊🤫', opts:['American Psycho','Fight Club','The Dark Knight','Memento'], a:1, hint:'Die erste Regel lautet: Ihr verliert kein Wort darüber.'},
+    {emj:'💊🕶️🐇🚪', opts:['Alice im Wunderland','Tron','Matrix','Ready Player One'], a:2, hint:'Folge dem weißen Kaninchen.'},
+    {emj:'📖🌌👴🚀', opts:['Interstellar','Contact','The Martian','Ad Astra'], a:0, hint:'Ein Vater kommuniziert durch die Zeit über ein Bücherregal.'},
+    {emj:'🩸🎻👑🏰', opts:['Game of Thrones','The Witcher','House of the Dragon','Reign'], a:0, hint:'Das rote Hochzeit-Ereignis.'}
+  ]
 ];
 
-// TYPE: ANAGRAMM (4 Wörter entschlüsseln, ~1-2 Min)
+// 🔤 KRYPTOGRAMM / ANAGRAMM (Schwere Wörter, 4 Stufen)
 const ANAGRAM_SETS = [
   [
-    {word:'LCHSENL', answer:'SCHNELL', hint:'Nicht langsam'},
-    {word:'MMORSE', answer:'SOMMER', hint:'Heiße Jahreszeit'},
-    {word:'PLAEF', answer:'APFEL', hint:'Obst vom Baum'},
-    {word:'GREBE', answer:'BERGE', hint:'Hohe Gipfel'}
-  ],
-  [
-    {word:'LUSCHE', answer:'SCHULE', hint:'Dort lernt man'},
-    {word:'TREWET', answer:'WETTER', hint:'Sonne, Regen, Wind'},
-    {word:'URDEFN', answer:'FREUND', hint:'Jemand den man mag'},
-    {word:'TRIENW', answer:'WINTER', hint:'Kalte Jahreszeit'}
+    {word:'TEIKALVEINRST', answer:'KREISVERKEHR', hint:'Eine runde Sache im Straßenverkehr.'},
+    {word:'IEALMTINGLSNW', answer:'ALLGEMEINWISSEN', hint:'Das, was ihr heute für diese App braucht.'},
+    {word:'ENPHMSOALRIE', answer:'REISEPHANOMEN', hint:'Etwas, das im Urlaub auftritt.'},
+    {word:'AUMHTENLSALTI', answer:'ALBSTRASSE', hint:'Ein Straßenname aus diesem Spiel.'}
   ]
 ];
 
-// TYPE: LOGIK-QUIZ (5 Fragen, ~1-2 Min)
+// 🧩 CRYPTIC LOGIC QUIZ (5 Stufen)
 const LOGIC_SETS = [
   [
-    {q:'Wenn heute Dienstag ist,\nwelcher Tag ist übermorgen?', opts:['Mittwoch','Donnerstag','Freitag','Samstag'], a:1},
-    {q:'Anna ist älter als Ben.\nClara ist jünger als Ben.\nWer ist am jüngsten?', opts:['Anna','Ben','Clara','Unklar'], a:2},
-    {q:'Ein Zug fährt um 14:00 los\nund braucht 1h 30min.\nWann kommt er an?', opts:['15:00','15:30','16:00','16:30'], a:1},
-    {q:'Du hast 3 Äpfel und nimmst 2 weg.\nWie viele hast DU jetzt?', opts:['1','2','3','5'], a:1},
-    {q:'Welches Wort passt NICHT?', opts:['Apfel','Birne','Möhre','Kirsche'], a:2}
+    {q:'Ein Bauer hat 17 Schafe. Alle außer 9 sterben. Wie viele lebendige Schafe hat er noch?', opts:['0','8','9','17'], a:2},
+    {q:'Wenn 5 Maschinen 5 Minuten brauchen, um 5 Widgets herzustellen, wie lange brauchen 100 Maschinen für 100 Widgets?', opts:['1 Minute','5 Minuten','20 Minuten','100 Minuten'], a:1},
+    {q:'Einige Monate haben 30 Tage, einige haben 31. Wie viele Monate haben 28 Tage?', opts:['1 Monat','Alle 12 Monate','Nur alle 4 Jahre','Keiner'], a:1},
+    {q:'Du nimmst an einem Wettrennen teil und überholst den Zweitplatzierten. An welcher Position befindest du dich jetzt?', opts:['1. Platz','2. Platz','3. Platz','Letzter Platz'], a:1},
+    {q:'Welches Wort passt logisch NICHT in die Reihe?\nZylinder, Würfel, Kreis, Pyramide', opts:['Zylinder','Würfel','Kreis','Pyramide'], a:2} // Kreis ist 2D, Rest 3D
   ]
 ];
 
-// 🌟 NEU: TYPE: ALLGEMEINWISSEN (Anspruchsvoll, 4 Fragen)
+// 🧠 EXPERTEN-ALLGEMEINWISSEN (Sehr anspruchsvoll, 5 Stufen)
 const KNOWLEDGE_SETS = [
   [
-    {q:'Welches Element hat das chemische Symbol "Fe"?', opts:['Fluor','Eisen','Fermium','Feldspat'], a:1},
-    {q:'Wie viele Zähne hat ein erwachsener Mensch normalerweise (ohne Weisheitszähne)?', opts:['28','30','32','34'], a:0},
-    {q:'Wer schrieb das weltberühmte Werk "Faust"?', opts:['Friedrich Schiller','Heinrich Heine','Johann Wolfgang von Goethe','Gotthold Lessing'], a:2},
-    {q:'Welches ist das flächenmäßig kleinste Bundesland der Bundesrepublik Deutschland?', opts:['Saarland','Bremen','Hamburg','Berlin'], a:1}
+    {q:'Welcher berühmte Physiker formulierte die quantenmechanische Wellengleichung und besaß eine (gedankliche) Katze?', opts:['Albert Einstein','Werner Heisenberg','Erwin Schrödinger','Max Planck'], a:2},
+    {q:'Welcher Staat besitzt weltweit die meisten aktiven Vulkane?', opts:['Indonesien','Japan','Island','USA'], a:0},
+    {q:'Was beschreibt das ökonomische Gesetz von Angebot und Nachfrage bei sinkendem Angebot und gleichbleibender Nachfrage?', opts:['Der Preis fällt','Der Preis steigt','Der Markt bricht ein','Nichts passiert'], a:1},
+    {q:'Welches Land schenkte den USA die berühmte Freiheitsstatue in New York?', opts:['Großbritannien','Deutschland','Frankreich','Spanien'], a:2},
+    {q:'Wie viele Herzen besitzt eine Krake (Oktopus) von Natur aus?', opts:['1','2','3','4'], a:2}
   ],
   [
-    {q:'In welchem Jahr fiel die Berliner Mauer?', opts:['1985','1987','1989','1991'], a:2},
-    {q:'Welches Organ des menschlichen Körpers verbraucht die meiste Energie?', opts:['Das Herz','Die Leber','Die Muskeln','Das Gehirn'], a:3},
-    {q:'Wie viele Planeten in unserem Sonnensystem haben ein Ringsystem?', opts:['Nur einer (Saturn)','Zwei','Vier','Alle'], a:2},
-    {q:'Wer gilt als der Erfinder des Buchdrucks mit beweglichen Lettern?', opts:['Johannes Gutenberg','Nikola Tesla','Leonardo da Vinci','Albert Einstein'], a:0}
+    {q:'In welcher Stadt befindet sich der Hauptsitz des Internationalen Gerichtshofs (IGH)?', opts:['Genf','Brüssel','Den Haag','New York'], a:3},
+    {q:'Welches Kunstwerk gilt als das teuerste jemals versteigerte Gemälde der Welt?', opts:['Mona Lisa','Salvator Mundi','Die Kartenspieler','Der Schrei'], a:1},
+    {q:'Welche Epoche der Kunst- und Architekturgeschichte folgte direkt auf die Romanik?', opts:['Barock','Renaissance','Gotik','Klassizismus'], a:2},
+    {q:'Aus welchem Land stammt der weltberühmte Komponist Frédéric Chopin ursprünglich?', opts:['Frankreich','Polen','Österreich','Russland'], a:1},
+    {q:'Welches Gas macht mit rund 78 % den größten Anteil unserer Erdatmosphäre aus?', opts:['Sauerstoff','Kohlendioxid','Stickstoff','Argon'], a:2}
   ]
 ];
 
-// 🌟 NEU: TYPE: SCHÄTZFRAGEN (Zahleneingabe, 3 Fragen)
-const GUESS_SETS = [
-  [
-    {q:'Wie viele Meter ist der Eiffelturm in Paris hoch (inkl. Antenne)?', a:330, hint:'Tipp: Zwischen 250 und 400 Metern.'},
-    {q:'In welchem Jahr sank die berühmte Titanic im Nordatlantik?', a:1912, hint:'Tipp: Anfang des 20. Jahrhunderts.'},
-    {q:'Wie viele Knochen hat das menschliche Skelett eines Erwachsenen ungefähr?', a:206, hint:'Tipp: Knapp über 200.'}
-  ]
-];
-
-// 🌟 NEU: TYPE: GEOGRAFIE (4 Fragen)
+// 🌍 GLOBETROTTER-GEOGRAFIE (Schwer, 5 Stufen)
 const GEO_SETS = [
   [
-    {q:'Welches Land hat die längste Küstenlinie der Welt?', opts:['Russland','Kanada','Australien','USA'], a:1},
-    {q:'Wie heißt die Hauptstadt von Australien?', opts:['Sydney','Melbourne','Canberra','Brisbane'], a:2},
-    {q:'Welcher Fluss ist der wasserreichste Fluss der Erde?', opts:['Nil','Amazonas','Jangtsekiang','Mississippi'], a:1},
-    {q:'Durch welches europäische Land fließt der Fluss Tejo?', opts:['Spanien & Portugal','Italien','Frankreich','Griechenland'], a:0}
+    {q:'Welches Gebirge trennt geografisch den europäischen vom asiatischen Teil Russlands?', opts:['Kaukasus','Ural','Altai','Karpaten'], a:1},
+    {q:'Welches Land ist das flächenmäßig größte Binnenland der Erde (ohne direkten Zugang zu einem offenen Weltmeer)?', opts:['Mongolei','Kasachstan','Tschad','Bolivien'], a:1},
+    {q:'Wie heißt die Meerenge, die Spanien von Marokko (Europa von Afrika) trennt?', opts:['Straße von Malakka','Straße von Gibraltar','Bosporus','Beringstraße'], a:1},
+    {q:'Welche dieser Großstädte liegt geografisch am weitesten nördlich?', opts:['London','Berlin','Moskau','Kanada (Ottawa)'], a:2},
+    {q:'Zu welchem Land gehören die Galapagosinseln im Pazifischen Ozean offiziell?', opts:['Ecuador','Kolumbien','Peru','Chile'], a:0}
   ]
 ];
 
-// TYPE: MEMORY (6 Paare)
-const MEMORY_EMOJIS = [['🍕','🍔','🌮','🍩','🍦','🍎'],['⚽','🏀','🎾','🏈','⚾','🏐'],['🐶','🐱','🦊','🐼','🐨','🐵']];
+// ⚖️ PROFESSOR-SCHÄTZEN (Zahleneingabe mit prozentualem Toleranzfenster, 4 Stufen)
+// Einzigartiges System: Teams müssen im definierten min/max Korridor landen!
+const GUESS_SETS = [
+  [
+    {q:'Wie viele Liter Wasser fließen pro Sekunde durchschnittlich die Niagarafälle hinunter?', min:2000000, max:3000000, textA:'ca. 2.400.000 Liter', hint:'Schätze im Millionen-Bereich!'},
+    {q:'Wie viele Kilometer beträgt der exakte Umfang der Erde am Äquator?', min:39000, max:41000, textA:'40.075 km', hint:'Tipp: Rund um 40 Tausend.'},
+    {q:'Wie viele Tage brauchte das Raumschiff Apollo 11 im Jahr 1969 für den Hinflug zum Mond?', min:3, max:4, textA:'ca. 3-4 Tage (76 Stunden)', hint:'Es ging schneller als man denkt!'},
+    {q:'In welchem Jahr wurde die antike Stadt Pompeji durch den verheerenden Ausbruch des Vesuvs verschüttet?', min:70, max:85, textA:'79 nach Christus', hint:'Tipp: Erstes Jahrhundert nach Christus!'}
+  ]
+];
 
-// ══ JOKERS ══
-const JOKERS = {
-  faenger: [
-    {id:'speed',  icon:'⚡', title:'SPEED HUNT',   desc:'5 Min lang: Live-Standort der Gejagten. Sofort beim Spielleiter einlösen!', dur:300},
-    {id:'drone',  icon:'📸', title:'DROHNEN-SCAN', desc:'Beide Gejagten-Teams müssen SOFORT ein Foto ihrer Umgebung in die Gruppe schicken!', dur:0},
-    {id:'jam',    icon:'📵', title:'FUNKSTÖRUNG',  desc:'Die Gejagten dürfen 5 Minuten lang keine Stationscodes eingeben!', dur:300},
-  ],
-  gejagt: [
-    {id:'ghost',  icon:'👻', title:'GHOST MODE',  desc:'Die nächste Standortmeldung darf geschwänzt werden. Beim Spielleiter melden!', dur:0},
-    {id:'nebel',  icon:'🌫️', title:'NEBELWAND',   desc:'Bei Sichtkontakt zum Fänger: Dieser muss 2 Min stehen bleiben!', dur:120},
-    {id:'fake',   icon:'🗺️', title:'ABLENKUNG',   desc:'Schickt einmal einen falschen Standort (ca. 200m versetzt) an den Spielleiter!', dur:0},
-  ],
-};
+// HARDCORE MEMORY (8 Paare statt 6 = 16 Karten!)
+const MEMORY_EMOJIS = [
+  ['🧬','🧪','🩺','🔬','🛰️','🪐','🧮','📐'],
+  ['🏛️','🏯','🕌','💒','🎡','⛰️','🌋','🏜️']
+];
 
 // ══ STATE ══
 let role = null;
@@ -406,7 +401,7 @@ let usedJokerIds = new Set();
 let activeTimers = [];
 let currentStation = null;
 
-// ══ ROLE SELECT ══
+// ══ SETUP ══
 function selectCard(r){
   selectedCard = r;
   document.getElementById('rc-faenger').classList.toggle('selected', r==='faenger');
@@ -426,7 +421,6 @@ function confirmRole(){
   document.getElementById('screenMain').classList.add('active');
 }
 
-// ══ MAIN INIT ══
 function initMain(){
   const badge = document.getElementById('miniRoleBadge');
   badge.className = 'mini-role-badge ' + role;
@@ -480,13 +474,14 @@ function submitCode(){
   enteredCode=''; buildCodeDisplay();
 }
 
-// ══ PUZZLE MODAL ══
-const PUZZLE_TYPES = ['math','emoji','anagram','logic','memory','knowledge','guess','geo'];
+// ══ MODAL GAME MECHANICS ══
+const PUZZLE_TYPES = ['math','emoji','anagram','logic','knowledge','geo','guess','memory'];
 let currentPuzzleType = null;
 let currentPuzzleData = null;
 let puzzleStep = 0;
 
 function openPuzzleModal(){
+  // Zufälliger schwerer Modus
   const type = PUZZLE_TYPES[Math.floor(Math.random()*PUZZLE_TYPES.length)];
   currentPuzzleType = type;
   puzzleStep = 0;
@@ -495,20 +490,20 @@ function openPuzzleModal(){
   document.getElementById('modalCloseBtn').style.display = 'none';
 
   const meta = {
-    math:{icon:'🧮', name:'MATHE-KETTE', desc:'Löst 5 Rechenaufgaben nacheinander. Alle richtig = Station geschafft!'},
-    emoji:{icon:'🎬', name:'EMOJI-FILMRÄTSEL', desc:'Erkennt 4 Filme aus Emojis. Teamwork hilft!'},
-    anagram:{icon:'🔤', name:'ANAGRAMM-SPRINT', desc:'Entschlüsselt 4 Wörter. Buchstaben sind vertauscht!'},
-    logic:{icon:'🧩', name:'LOGIK-QUIZ', desc:'5 knifflige Fragen — gut überlegen!'},
-    memory:{icon:'🎴', name:'MEMORY', desc:'Findet alle 6 Paare. Karten umdrehen und merken!'},
-    knowledge:{icon:'🧠', name:'ALLGEMEINWISSEN', desc:'Zeigt, was ihr im Kopf habt! Anspruchsvolles Trivia-Quiz.'},
-    guess:{icon:'⚖️', name:'SCHÄTZ-DUELL', desc:'Gebt eine exakte Zahl ein. Es muss genau stimmen!'},
-    geo:{icon:'🌍', name:'WELTREISE-QUIZ', desc:'Geografie-Fragen für echte Weltenbummler.'}
+    math:{icon:'🧮', name:'NUMERISCHES MATRIX-MUSTER', desc:'Analysiert die komplexen mathematischen Muster. (5 Runden)'},
+    emoji:{icon:'🎬', name:'CINEMATIC KRYPTO-EMOJI', desc:'Erkennt die Meisterwerke der Popkultur. Um die Ecke denken! (5 Runden)'},
+    anagram:{icon:'🔤', name:'ANAGRAMM-ANALYSE', desc:'Entschlüsselt die extrem verdrehten Fachwörter. (4 Runden)'},
+    logic:{icon:'🧩', name:'PARADOXE LOGIK', desc:'Vorsicht, Fangfragen! Schaltet euer Gehirn ein. (5 Runden)'},
+    knowledge:{icon:'🧠', name:'ELITE-ALLGEMEINWISSEN', desc:'Hochgradig anspruchsvolle Fragen aus Wissenschaft und Kunst. (5 Runden)'},
+    geo:{icon:'🌍', name:'MASTER-GEOGRAFIE', desc:'Globus-Expertenwissen für Weltenbummler. (5 Runden)'},
+    guess:{icon:'⚖️', name:'TOLERANZ-SCHÄTZUNG', desc:'Ihr müsst nicht exakt treffen, aber im mathematischen Zielfenster landen! (4 Runden)'},
+    memory:{icon:'🎴', name:'HARDCORE MEMORY (4x4)', desc:'Erhöhte Schwierigkeit! Findet alle 8 Wissenschafts-Paare.'}
   }[type];
 
   document.getElementById('modalBody').innerHTML = `
     <div class="warn-box">
-      <div class="warn-box-title">⚠ STOP — BLEIBT STEHEN!</div>
-      <div class="warn-box-text">Rätsel muss <strong>vor Ort</strong> gelöst werden. Wer wegläuft, verliert den Fortschritt!</div>
+      <div class="warn-box-title">⚠ TERMINAL GESPERRT — BLEIBT VOR ORT!</div>
+      <div class="warn-box-text">Das Rätsel benötigt volle Team-Konzentration. Bei Flucht verfällt euer Fortschritt!</div>
     </div>
     <div class="puzzle-intro">
       <div class="puzzle-intro-icon">${meta.icon}</div>
@@ -527,8 +522,8 @@ function openPuzzleModal(){
   else if(type==='anagram'){ currentPuzzleData = ANAGRAM_SETS[Math.floor(Math.random()*ANAGRAM_SETS.length)]; renderAnagram(); }
   else if(type==='logic'){ currentPuzzleData = LOGIC_SETS[Math.floor(Math.random()*LOGIC_SETS.length)]; renderLogic(); }
   else if(type==='knowledge'){ currentPuzzleData = KNOWLEDGE_SETS[Math.floor(Math.random()*KNOWLEDGE_SETS.length)]; renderKnowledge(); }
-  else if(type==='guess'){ currentPuzzleData = GUESS_SETS[Math.floor(Math.random()*GUESS_SETS.length)]; renderGuess(); }
   else if(type==='geo'){ currentPuzzleData = GEO_SETS[Math.floor(Math.random()*GEO_SETS.length)]; renderGeo(); }
+  else if(type==='guess'){ currentPuzzleData = GUESS_SETS[Math.floor(Math.random()*GUESS_SETS.length)]; renderGuess(); }
   else if(type==='memory'){ initMemory(); renderMemory(); }
 
   document.getElementById('modalOverlay').classList.add('active');
@@ -545,408 +540,235 @@ function progressDotsHTML(total, current){
   return html + '</div>';
 }
 
-// ── MATH ──
+// Render-Funktionen
 function renderMath(){
-  const c = document.getElementById('puzzleContainer');
-  const total = currentPuzzleData.length;
+  const c = document.getElementById('puzzleContainer'); const total = currentPuzzleData.length;
   if(puzzleStep >= total){ puzzleSolved(); return; }
   const cur = currentPuzzleData[puzzleStep];
-  c.innerHTML = `
-    ${progressDotsHTML(total, puzzleStep)}
-    <div class="puz-q-label">AUFGABE ${puzzleStep+1} / ${total}</div>
-    <div class="puz-q-big">${cur.q} = ?</div>
+  c.innerHTML = `${progressDotsHTML(total, puzzleStep)}
+    <div class="puz-q-label">SEQUENZ ${puzzleStep+1} / ${total}</div>
+    <div class="puz-q" style="font-size:1.1rem; font-weight:bold;">${cur.q}</div>
     <div class="puz-input-wrap">
       <input type="number" class="puz-input" id="puzInp" placeholder="?" autofocus>
       <button class="puz-input-submit" onclick="checkMath(${cur.a})">OK</button>
-    </div>
-    <div class="puz-fb" id="puzFb"></div>
-  `;
-  setTimeout(()=>{ const i=document.getElementById('puzInp'); if(i){i.focus(); i.addEventListener('keydown',e=>{ if(e.key==='Enter') checkMath(cur.a); });}}, 50);
+    </div><div class="puz-fb" id="puzFb"></div>`;
+  attachInputEnter(() => checkMath(cur.a));
 }
 function checkMath(correct){
-  const v = parseInt(document.getElementById('puzInp').value);
-  const fb = document.getElementById('puzFb');
-  if(v===correct){
-    fb.textContent='✓ RICHTIG!'; fb.className='puz-fb ok'; fb.style.display='block';
-    setTimeout(()=>{ puzzleStep++; renderMath(); }, 700);
-  } else {
-    fb.textContent='✗ Falsch — nochmal!'; fb.className='puz-fb err'; fb.style.display='block';
-    setTimeout(()=>{ fb.style.display='none'; const i=document.getElementById('puzInp'); if(i){i.value=''; i.focus();}}, 1200);
-  }
+  const v = parseInt(document.getElementById('puzInp').value); const fb = document.getElementById('puzFb');
+  if(v===correct){ fb.textContent='✓ KORREKT'; fb.className='puz-fb ok'; fb.style.display='block'; setTimeout(()=>{ puzzleStep++; renderMath(); }, 800); }
+  else { fb.textContent='✗ FALSCH — System blockiert. Erneut berechnen!'; fb.className='puz-fb err'; fb.style.display='block'; }
 }
 
-// ── EMOJI ──
 function renderEmoji(){
-  const c = document.getElementById('puzzleContainer');
-  const total = currentPuzzleData.length;
+  const c = document.getElementById('puzzleContainer'); const total = currentPuzzleData.length;
   if(puzzleStep >= total){ puzzleSolved(); return; }
   const cur = currentPuzzleData[puzzleStep];
-  c.innerHTML = `
-    ${progressDotsHTML(total, puzzleStep)}
-    <div class="puz-q-label">FILM ${puzzleStep+1} / ${total}</div>
+  c.innerHTML = `${progressDotsHTML(total, puzzleStep)}
+    <div class="puz-q-label">DEKODIERUNG ${puzzleStep+1} / ${total}</div>
     <div class="emoji-display">${cur.emj}</div>
     <div class="puz-hint"><span>💡</span> ${cur.hint}</div>
-    <div class="puz-opts">
-      ${cur.opts.map((o,i)=>`<div class="puz-opt" onclick="checkEmoji(${i},${cur.a})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}
-    </div>
-    <div class="puz-fb" id="puzFb"></div>
-  `;
+    <div class="puz-opts">${cur.opts.map((o,i)=>`<div class="puz-opt" onclick="checkEmoji(${i},${cur.a})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}</div>
+    <div class="puz-fb" id="puzFb"></div>`;
 }
 function checkEmoji(chosen, correct){
-  const fb = document.getElementById('puzFb');
-  const opts = document.querySelectorAll('.puz-opt');
-  if(chosen===correct){
-    opts[chosen].classList.add('correct');
-    opts.forEach(o=>o.style.pointerEvents='none');
-    fb.textContent='✓ RICHTIG!'; fb.className='puz-fb ok'; fb.style.display='block';
-    setTimeout(()=>{ puzzleStep++; renderEmoji(); }, 800);
-  } else {
-    opts[chosen].classList.add('wrong');
-    fb.textContent='✗ Falsch — nochmal versuchen'; fb.className='puz-fb err'; fb.style.display='block';
-    setTimeout(()=>{ opts[chosen].classList.remove('wrong'); fb.style.display='none'; }, 1200);
-  }
+  const fb = document.getElementById('puzFb'); const opts = document.querySelectorAll('.puz-opt');
+  if(chosen===correct){ opts[chosen].classList.add('correct'); opts.forEach(o=>o.style.pointerEvents='none'); fb.textContent='✓ ZUGRIFF GEWÄHRT'; fb.className='puz-fb ok'; fb.style.display='block'; setTimeout(()=>{ puzzleStep++; renderEmoji(); }, 800); }
+  else { opts[chosen].classList.add('wrong'); fb.textContent='✗ ANALYSE FEHLGESCHLAGEN'; fb.className='puz-fb err'; fb.style.display='block'; }
 }
 
-// ── ANAGRAM ──
 function renderAnagram(){
-  const c = document.getElementById('puzzleContainer');
-  const total = currentPuzzleData.length;
+  const c = document.getElementById('puzzleContainer'); const total = currentPuzzleData.length;
   if(puzzleStep >= total){ puzzleSolved(); return; }
   const cur = currentPuzzleData[puzzleStep];
-  c.innerHTML = `
-    ${progressDotsHTML(total, puzzleStep)}
-    <div class="puz-q-label">WORT ${puzzleStep+1} / ${total}</div>
-    <div class="puz-q-big" style="letter-spacing:8px;">${cur.word}</div>
+  c.innerHTML = `${progressDotsHTML(total, puzzleStep)}
+    <div class="puz-q-label">ANAGRAMM ${puzzleStep+1} / ${total}</div>
+    <div class="puz-q-big" style="letter-spacing:4px; font-size:1.3rem;">${cur.word}</div>
     <div class="puz-hint"><span>💡</span> ${cur.hint}</div>
     <div class="puz-input-wrap">
       <input type="text" class="puz-input" id="puzInp" placeholder="Lösung..." autofocus autocomplete="off">
       <button class="puz-input-submit" onclick="checkAnagram('${cur.answer}')">OK</button>
-    </div>
-    <div class="puz-fb" id="puzFb"></div>
-  `;
-  setTimeout(()=>{ const i=document.getElementById('puzInp'); if(i){i.focus(); i.addEventListener('keydown',e=>{ if(e.key==='Enter') checkAnagram(cur.answer); });}}, 50);
+    </div><div class="puz-fb" id="puzFb"></div>`;
+  attachInputEnter(() => checkAnagram(cur.answer));
 }
 function checkAnagram(correct){
-  const v = document.getElementById('puzInp').value.trim().toUpperCase().replace(/\s/g,'');
-  const fb = document.getElementById('puzFb');
-  if(v===correct){
-    fb.textContent='✓ RICHTIG!'; fb.className='puz-fb ok'; fb.style.display='block';
-    setTimeout(()=>{ puzzleStep++; renderAnagram(); }, 800);
-  } else {
-    fb.textContent='✗ Falsch — nochmal denken!'; fb.className='puz-fb err'; fb.style.display='block';
-    setTimeout(()=>{ fb.style.display='none'; const i=document.getElementById('puzInp'); if(i){i.value=''; i.focus();}}, 1400);
-  }
+  const v = document.getElementById('puzInp').value.trim().toUpperCase().replace(/\s/g,''); const fb = document.getElementById('puzFb');
+  if(v===correct){ fb.textContent='✓ WORT REKONSTRUIERT'; fb.className='puz-fb ok'; fb.style.display='block'; setTimeout(()=>{ puzzleStep++; renderAnagram(); }, 800); }
+  else { fb.textContent='✗ FEHLERHAFTE MATRIX'; fb.className='puz-fb err'; fb.style.display='block'; }
 }
 
-// ── LOGIC ──
 function renderLogic(){
-  const c = document.getElementById('puzzleContainer');
-  const total = currentPuzzleData.length;
+  const c = document.getElementById('puzzleContainer'); const total = currentPuzzleData.length;
   if(puzzleStep >= total){ puzzleSolved(); return; }
   const cur = currentPuzzleData[puzzleStep];
-  c.innerHTML = `
-    ${progressDotsHTML(total, puzzleStep)}
-    <div class="puz-q-label">FRAGE ${puzzleStep+1} / ${total}</div>
+  c.innerHTML = `${progressDotsHTML(total, puzzleStep)}
+    <div class="puz-q-label">LOGIK-MATRIX ${puzzleStep+1} / ${total}</div>
     <div class="puz-q">${cur.q}</div>
-    <div class="puz-opts">
-      ${cur.opts.map((o,i)=>`<div class="puz-opt" onclick="checkLogic(${i},${cur.a})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}
-    </div>
-    <div class="puz-fb" id="puzFb"></div>
-  `;
+    <div class="puz-opts">${cur.opts.map((o,i)=>`<div class="puz-opt" onclick="checkLogic(${i},${cur.a})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}</div>
+    <div class="puz-fb" id="puzFb"></div>`;
 }
 function checkLogic(chosen, correct){
-  const fb = document.getElementById('puzFb');
-  const opts = document.querySelectorAll('.puz-opt');
-  if(chosen===correct){
-    opts[chosen].classList.add('correct');
-    opts.forEach(o=>o.style.pointerEvents='none');
-    fb.textContent='✓ RICHTIG!'; fb.className='puz-fb ok'; fb.style.display='block';
-    setTimeout(()=>{ puzzleStep++; renderLogic(); }, 800);
-  } else {
-    opts[chosen].classList.add('wrong');
-    fb.textContent='✗ Überlegt nochmal!'; fb.className='puz-fb err'; fb.style.display='block';
-    setTimeout(()=>{ opts[chosen].classList.remove('wrong'); fb.style.display='none'; }, 1200);
-  }
+  const fb = document.getElementById('puzFb'); const opts = document.querySelectorAll('.puz-opt');
+  if(chosen===correct){ opts[chosen].classList.add('correct'); opts.forEach(o=>o.style.pointerEvents='none'); fb.textContent='✓ LOGISCH VERIFIZIERT'; fb.className='puz-fb ok'; fb.style.display='block'; setTimeout(()=>{ puzzleStep++; renderLogic(); }, 800); }
+  else { opts[chosen].classList.add('wrong'); fb.textContent='✗ DENKFEHLER!'; fb.className='puz-fb err'; fb.style.display='block'; }
 }
 
-// ── ALLGEMEINWISSEN (KNOWLEDGE) ──
 function renderKnowledge(){
-  const c = document.getElementById('puzzleContainer');
-  const total = currentPuzzleData.length;
+  const c = document.getElementById('puzzleContainer'); const total = currentPuzzleData.length;
   if(puzzleStep >= total){ puzzleSolved(); return; }
   const cur = currentPuzzleData[puzzleStep];
-  c.innerHTML = `
-    ${progressDotsHTML(total, puzzleStep)}
-    <div class="puz-q-label">WISSEN ${puzzleStep+1} / ${total}</div>
+  c.innerHTML = `${progressDotsHTML(total, puzzleStep)}
+    <div class="puz-q-label">TRIVIA ${puzzleStep+1} / ${total}</div>
     <div class="puz-q">${cur.q}</div>
-    <div class="puz-opts">
-      ${cur.opts.map((o,i)=>`<div class="puz-opt" onclick="checkKnowledge(${i},${cur.a})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}
-    </div>
-    <div class="puz-fb" id="puzFb"></div>
-  `;
+    <div class="puz-opts">${cur.opts.map((o,i)=>`<div class="puz-opt" onclick="checkKnowledge(${i},${cur.a})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}</div>
+    <div class="puz-fb" id="puzFb"></div>`;
 }
 function checkKnowledge(chosen, correct){
-  const fb = document.getElementById('puzFb');
-  const opts = document.querySelectorAll('.puz-opt');
-  if(chosen===correct){
-    opts[chosen].classList.add('correct');
-    opts.forEach(o=>o.style.pointerEvents='none');
-    fb.textContent='✓ KORREKT!'; fb.className='puz-fb ok'; fb.style.display='block';
-    setTimeout(()=>{ puzzleStep++; renderKnowledge(); }, 800);
-  } else {
-    opts[chosen].classList.add('wrong');
-    fb.textContent='✗ Falsche Antwort!'; fb.className='puz-fb err'; fb.style.display='block';
-    setTimeout(()=>{ opts[chosen].classList.remove('wrong'); fb.style.display='none'; }, 1200);
-  }
+  const fb = document.getElementById('puzFb'); const opts = document.querySelectorAll('.puz-opt');
+  if(chosen===correct){ opts[chosen].classList.add('correct'); opts.forEach(o=>o.style.pointerEvents='none'); fb.textContent='✓ EXZELLENT'; fb.className='puz-fb ok'; fb.style.display='block'; setTimeout(()=>{ puzzleStep++; renderKnowledge(); }, 800); }
+  else { opts[chosen].classList.add('wrong'); fb.textContent='✗ FALSCH - Wissenslücke entdeckt.'; fb.className='puz-fb err'; fb.style.display='block'; }
 }
 
-// ── SCHÄTZFRAGEN (GUESS) ──
-function renderGuess(){
-  const c = document.getElementById('puzzleContainer');
-  const total = currentPuzzleData.length;
+function renderGeo(){
+  const c = document.getElementById('puzzleContainer'); const total = currentPuzzleData.length;
   if(puzzleStep >= total){ puzzleSolved(); return; }
   const cur = currentPuzzleData[puzzleStep];
-  c.innerHTML = `
-    ${progressDotsHTML(total, puzzleStep)}
-    <div class="puz-q-label">SCHÄTZEN ${puzzleStep+1} / ${total}</div>
+  c.innerHTML = `${progressDotsHTML(total, puzzleStep)}
+    <div class="puz-q-label">KOORDINATE ${puzzleStep+1} / ${total}</div>
+    <div class="puz-q">${cur.q}</div>
+    <div class="puz-opts">${cur.opts.map((o,i)=>`<div class="puz-opt" onclick="checkGeo(${i},${cur.a})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}</div>
+    <div class="puz-fb" id="puzFb"></div>`;
+}
+function checkGeo(chosen, correct){
+  const fb = document.getElementById('puzFb'); const opts = document.querySelectorAll('.puz-opt');
+  if(chosen===correct){ opts[chosen].classList.add('correct'); opts.forEach(o=>o.style.pointerEvents='none'); fb.textContent='✓ ORTUNG KORREKT'; fb.className='puz-fb ok'; fb.style.display='block'; setTimeout(()=>{ puzzleStep++; renderGeo(); }, 800); }
+  else { opts[chosen].classList.add('wrong'); fb.textContent='✗ FALSCHE HEMISPHÄRE'; fb.className='puz-fb err'; fb.style.display='block'; }
+}
+
+function renderGuess(){
+  const c = document.getElementById('puzzleContainer'); const total = currentPuzzleData.length;
+  if(puzzleStep >= total){ puzzleSolved(); return; }
+  const cur = currentGuessQuestion = currentPuzzleData[puzzleStep];
+  c.innerHTML = `${progressDotsHTML(total, puzzleStep)}
+    <div class="puz-q-label">MATRIX-SCHÄTZUNG ${puzzleStep+1} / ${total}</div>
     <div class="puz-q">${cur.q}</div>
     <div class="puz-hint"><span>💡</span> ${cur.hint}</div>
     <div class="puz-input-wrap">
-      <input type="number" class="puz-input" id="puzInp" placeholder="Wert..." autofocus>
-      <button class="puz-input-submit" onclick="checkGuess(${cur.a})">OK</button>
-    </div>
-    <div class="puz-fb" id="puzFb"></div>
-  `;
-  setTimeout(()=>{ const i=document.getElementById('puzInp'); if(i){i.focus(); i.addEventListener('keydown',e=>{ if(e.key==='Enter') checkGuess(cur.a); });}}, 50);
+      <input type="number" class="puz-input" id="puzInp" placeholder="Schätzwert..." autofocus>
+      <button class="puz-input-submit" onclick="checkGuess()">OK</button>
+    </div><div class="puz-fb" id="puzFb"></div>`;
+  attachInputEnter(() => checkGuess());
 }
-function checkGuess(correct){
-  const v = parseInt(document.getElementById('puzInp').value);
-  const fb = document.getElementById('puzFb');
-  if(v===correct){
-    fb.textContent='✓ EXAKT GETROFFEN!'; fb.className='puz-fb ok'; fb.style.display='block';
-    setTimeout(()=>{ puzzleStep++; renderGuess(); }, 800);
+function checkGuess(){
+  const v = parseInt(document.getElementById('puzInp').value); const fb = document.getElementById('puzFb');
+  const cur = currentGuessQuestion;
+  if(v >= cur.min && v <= cur.max){
+    fb.innerHTML=`✓ IM TOLERANZBEREICH!<br><small style="color:#aaa">Antwort lautet: ${cur.textA}</small>`; fb.className='puz-fb ok'; fb.style.display='block'; setTimeout(()=>{ puzzleStep++; renderGuess(); }, 2000);
   } else {
-    fb.textContent = v < correct ? '✗ Zu niedrig! Versuchs noch einmal.' : '✗ Zu hoch! Versuchs noch einmal.';
-    fb.className='puz-fb err'; fb.style.display='block';
-    setTimeout(()=>{ fb.style.display='none'; const i=document.getElementById('puzInp'); if(i){i.focus();}}, 1400);
+    fb.textContent = v < cur.min ? '✗ Viel zu niedrig geschätzt!' : '✗ Viel zu hoch geschätzt!'; fb.className='puz-fb err'; fb.style.display='block';
   }
 }
 
-// ── GEOGRAFIE (GEO) ──
-function renderGeo(){
-  const c = document.getElementById('puzzleContainer');
-  const total = currentPuzzleData.length;
-  if(puzzleStep >= total){ puzzleSolved(); return; }
-  const cur = currentPuzzleData[puzzleStep];
-  c.innerHTML = `
-    ${progressDotsHTML(total, puzzleStep)}
-    <div class="puz-q-label">GEOGRAFIE ${puzzleStep+1} / ${total}</div>
-    <div class="puz-q">${cur.q}</div>
-    <div class="puz-opts">
-      ${cur.opts.map((o,i)=>`<div class="puz-opt" onclick="checkGeo(${i},${cur.a})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}
-    </div>
-    <div class="puz-fb" id="puzFb"></div>
-  `;
-}
-function checkGeo(chosen, correct){
-  const fb = document.getElementById('puzFb');
-  const opts = document.querySelectorAll('.puz-opt');
-  if(chosen===correct){
-    opts[chosen].classList.add('correct');
-    opts.forEach(o=>o.style.pointerEvents='none');
-    fb.textContent='✓ RICHTIG!'; fb.className='puz-fb ok'; fb.style.display='block';
-    setTimeout(()=>{ puzzleStep++; renderGeo(); }, 800);
-  } else {
-    opts[chosen].classList.add('wrong');
-    fb.textContent='✗ Falsch! Karte falsch gelesen.'; fb.className='puz-fb err'; fb.style.display='block';
-    setTimeout(()=>{ opts[chosen].classList.remove('wrong'); fb.style.display='none'; }, 1200);
-  }
-}
-
-// ── MEMORY ──
-let memCards = [];
-let memFlipped = [];
-let memMatches = 0;
-let memMoves = 0;
-let memLock = false;
-
+// ── MEMORY MECHANICS (8 Pairs) ──
+let memCards = []; let memFlipped = []; let memMatches = 0; let memMoves = 0; let memLock = false; const memMatchedSet = new Set();
+function isMemoryMatched(i){ return memMatchedSet.has(i); }
 function initMemory(){
-  const emojis = MEMORY_EMOJIS[Math.floor(Math.random()*MEMORY_EMOJIS.length)];
-  const doubled = [...emojis, ...emojis];
-  // Fisher-Yates shuffle
-  for(let i=doubled.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [doubled[i],doubled[j]] = [doubled[j],doubled[i]];
-  }
-  memCards = doubled;
-  memFlipped = [];
-  memMatches = 0;
-  memMoves = 0;
-  memLock = false;
+  const emojis = MEMORY_EMOJIS[Math.floor(Math.random()*MEMORY_EMOJIS.length)]; const doubled = [...emojis, ...emojis];
+  for(let i=doubled.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [doubled[i],doubled[j]] = [doubled[j],doubled[i]]; }
+  memCards = doubled; memFlipped = []; memMatches = 0; memMoves = 0; memLock = false; memMatchedSet.clear();
 }
-
 function renderMemory(){
   const c = document.getElementById('puzzleContainer');
-  c.innerHTML = `
-    <div class="mem-info">
-      <span>PAARE: <span id="memPairs">${memMatches}</span>/6</span>
-      <span>ZÜGE: <span id="memMoves">${memMoves}</span></span>
-    </div>
-    <div class="mem-board" id="memBoard"></div>
-    <div class="puz-fb" id="puzFb"></div>
-  `;
+  c.innerHTML = `<div class="mem-info"><span>PAARE: <span id="memPairs">${memMatches}</span>/8</span><span>ZÜGE: <span id="memMoves">${memMoves}</span></span></div><div class="mem-board" id="memBoard"></div><div class="puz-fb" id="puzFb"></div>`;
   updateMemoryBoard();
 }
-
 function updateMemoryBoard(){
   const board = document.getElementById('memBoard');
   board.innerHTML = memCards.map((c,i)=>{
-    const isFlipped = memFlipped.includes(i);
-    const isMatched = isMemoryMatched(i);
-    let cls = 'mem-card';
-    if(isMatched) cls += ' matched';
-    else if(isFlipped) cls += ' flipped';
+    const isFlipped = memFlipped.includes(i); const isMatched = isMemoryMatched(i); let cls = 'mem-card';
+    if(isMatched) cls += ' matched'; else if(isFlipped) cls += ' flipped';
     return `<div class="${cls}" onclick="flipMemory(${i})">${(isFlipped||isMatched)?c:'?'}</div>`;
   }).join('');
-  const pairsEl = document.getElementById('memPairs');
-  const movesEl = document.getElementById('memMoves');
-  if(pairsEl) pairsEl.textContent = memMatches;
-  if(movesEl) movesEl.textContent = memMoves;
+  if(document.getElementById('memPairs')) document.getElementById('memPairs').textContent = memMatches;
+  if(document.getElementById('memMoves')) document.getElementById('memMoves').textContent = memMoves;
 }
-
-const memMatchedSet = new Set();
-function isMemoryMatched(i){ return memMatchedSet.has(i); }
-
 function flipMemory(idx){
-  if(memLock) return;
-  if(memFlipped.includes(idx)) return;
-  if(isMemoryMatched(idx)) return;
-  if(memFlipped.length>=2) return;
-
-  memFlipped.push(idx);
-  updateMemoryBoard();
-
+  if(memLock || memFlipped.includes(idx) || isMemoryMatched(idx) || memFlipped.length>=2) return;
+  memFlipped.push(idx); updateMemoryBoard();
   if(memFlipped.length===2){
-    memMoves++;
-    memLock = true;
-    const [a,b] = memFlipped;
+    memMoves++; memLock = true; const [a,b] = memFlipped;
     if(memCards[a]===memCards[b]){
-      memMatchedSet.add(a); memMatchedSet.add(b);
-      memMatches++;
-      setTimeout(()=>{
-        memFlipped = [];
-        memLock = false;
-        updateMemoryBoard();
-        if(memMatches===6){
-          setTimeout(()=>puzzleSolved(), 500);
-        }
-      }, 600);
+      memMatchedSet.add(a); memMatchedSet.add(b); memMatches++;
+      setTimeout(()=>{ memFlipped = []; memLock = false; updateMemoryBoard(); if(memMatches===8) puzzleSolved(); }, 600);
     } else {
-      setTimeout(()=>{
-        memFlipped = [];
-        memLock = false;
-        updateMemoryBoard();
-      }, 900);
+      setTimeout(()=>{ memFlipped = []; memLock = false; updateMemoryBoard(); }, 900);
     }
   }
 }
 
-// Reset memory state when opening new memory puzzle
-const origInitMemory = initMemory;
-function initMemoryWrap(){
-  memMatchedSet.clear();
-  origInitMemory();
+// Helpers
+function attachInputEnter(callback){
+  setTimeout(()=>{ const i=document.getElementById('puzInp'); if(i){i.focus(); i.addEventListener('keydown',e=>{ if(e.key==='Enter') callback(); });}}, 60);
 }
-// Override
-initMemory = initMemoryWrap;
 
 // ══ PUZZLE SOLVED ══
 function puzzleSolved(){
-  solved.add(currentStation.id);
-  buildProgressDots();
+  solved.add(currentStation.id); buildProgressDots();
   document.getElementById('puzzleContainer').innerHTML = `
     <div style="text-align:center;padding:20px 0;">
       <div style="font-size:3rem;">✅</div>
-      <div style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;color:var(--g);text-shadow:var(--glow);letter-spacing:3px;margin:10px 0;">ALLE RICHTIG!</div>
-      <div style="font-size:.85rem;color:var(--w);">Station freigeschaltet ✓</div>
-    </div>
-  `;
+      <div style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;color:var(--g);text-shadow:var(--glow);letter-spacing:3px;margin:10px 0;">SYSTEM FREIGESCHALTET</div>
+      <div style="font-size:.85rem;color:var(--w);">Fortschritt für Station gespeichert.</div>
+    </div>`;
   setTimeout(()=>giveJoker(), 800);
 }
 
 function giveJoker(){
-  const pool = role==='faenger' ? JOKERS.faenger : JOKERS.gejagt;
-  const pick = pool[Math.floor(Math.random()*pool.length)];
-  myJokers.push({...pick, instanceId: Date.now()});
-  updateJokerBadge();
-
+  const pool = role==='faenger' ? JOKERS.faenger : JOKERS.gejagt; const pick = pool[Math.floor(Math.random()*pool.length)];
+  myJokers.push({...pick, instanceId: Date.now()}); updateJokerBadge();
   const revEl = document.getElementById('jReveal');
-  document.getElementById('jRevTitle').textContent = `🃏 JOKER: ${pick.icon} ${pick.title}`;
-  document.getElementById('jRevDesc').innerHTML = `${pick.desc}<br><br><em style="color:var(--ora)">Im Joker-Vorrat abrufbar!</em>`;
-  revEl.style.display='block';
-  document.getElementById('modalCloseBtn').style.display = 'block';
+  document.getElementById('jRevTitle').textContent = `🃏 JOKER ERHALTEN: ${pick.icon} ${pick.title}`;
+  document.getElementById('jRevDesc').innerHTML = `${pick.desc}<br><br><em style="color:var(--ora)">Im Terminal-Hauptmenü abrufbar.</em>`;
+  revEl.style.display='block'; document.getElementById('modalCloseBtn').style.display = 'block';
 }
 
-function closeModal(){
-  document.getElementById('modalOverlay').classList.remove('active');
-  currentStation = null;
-}
+function closeModal(){ document.getElementById('modalOverlay').classList.remove('active'); currentStation = null; }
 
 function updateJokerBadge(){
-  const badge = document.getElementById('miniJokerBadge');
-  const unused = myJokers.filter(j=>!usedJokerIds.has(j.instanceId)).length;
-  if(unused>0){ badge.style.display='flex'; badge.textContent=unused; }
-  else badge.style.display='none';
+  const badge = document.getElementById('miniJokerBadge'); const unused = myJokers.filter(j=>!usedJokerIds.has(j.instanceId)).length;
+  if(unused>0){ badge.style.display='flex'; badge.textContent=unused; } else badge.style.display='none';
 }
 
-// ══ JOKER INVENTORY ══
 function openJokerInventory(){
-  document.getElementById('modalTitle').textContent = '🃏 DEIN JOKER-VORRAT';
-  document.getElementById('modalCloseBtn').style.display = 'block';
-
+  document.getElementById('modalTitle').textContent = '🃏 VERFÜGBARE JOKER-DATEN'; document.getElementById('modalCloseBtn').style.display = 'block';
   const body = document.getElementById('modalBody');
-  if(myJokers.length===0){
-    body.innerHTML = `<div class="jk-empty">Noch keine Joker.<br>Löse Stationsrätsel um Joker zu erhalten!</div>`;
-  } else {
+  if(myJokers.length===0){ body.innerHTML = `<div class="jk-empty">Datenbank leer.<br>Sichere Stations-Fortschritte, um Abwehr-Protokolle freizuschalten.</div>`; } 
+  else {
     body.innerHTML = myJokers.map(j=>`
       <div class="jk-card${usedJokerIds.has(j.instanceId)?' used':''}">
-        <div class="jk-head">${j.icon} ${j.title}</div>
-        <div class="jk-desc">${j.desc}</div>
+        <div class="jk-head">${j.icon} ${j.title}</div><div class="jk-desc">${j.desc}</div>
         <button class="jk-use-btn" onclick="useJoker(${j.instanceId})" ${usedJokerIds.has(j.instanceId)?'disabled':''}>
-          ${usedJokerIds.has(j.instanceId)?'✓ EINGELÖST':'▶ JOKER EINLÖSEN'}
+          ${usedJokerIds.has(j.instanceId)?'✓ PROTOKOLL AKTIVIERT':'▶ JOKER EINSETZEN'}
         </button>
-      </div>
-    `).join('');
+      </div>`).join('');
   }
   document.getElementById('modalOverlay').classList.add('active');
 }
 
 function useJoker(iid){
-  const j = myJokers.find(x=>x.instanceId===iid);
-  if(!j) return;
-  if(!confirm(`Joker "${j.title}" wirklich einlösen?`)) return;
-  usedJokerIds.add(iid);
-  if(j.dur>0) startJokerTimer(j, iid);
-  updateJokerBadge();
-  openJokerInventory();
-  toast(`🃏 ${j.title} aktiviert! Spielleiter informieren.`);
+  const j = myJokers.find(x=>x.instanceId===iid); if(!j) return;
+  if(!confirm(`Möchtet ihr das Protokoll "${j.title}" starten?`)) return;
+  usedJokerIds.add(iid); if(j.dur>0) startJokerTimer(j, iid);
+  updateJokerBadge(); openJokerInventory(); toast(`🃏 ${j.title} AKTIVIERTI!`);
 }
 
 function startJokerTimer(j, iid){
-  let rem = j.dur;
-  const obj = { iid, title:j.title, getRem:()=>rem };
-  activeTimers.push(obj);
-  updateActiveJokers();
-  const iv = setInterval(()=>{
-    rem--;
-    updateActiveJokers();
-    if(rem<=0){ clearInterval(iv); activeTimers=activeTimers.filter(x=>x.iid!==iid); updateActiveJokers(); }
-  },1000);
+  let rem = j.dur; const obj = { iid, title:j.title, getRem:()=>rem }; activeTimers.push(obj); updateActiveJokers();
+  const iv = setInterval(()=>{ rem--; updateActiveJokers(); if(rem<=0){ clearInterval(iv); activeTimers=activeTimers.filter(x=>x.iid!==iid); updateActiveJokers(); } },1000);
 }
 
 function updateActiveJokers(){
-  const wrap = document.getElementById('ajStrip');
-  if(activeTimers.length===0){ wrap.classList.remove('show'); wrap.innerHTML=''; return; }
+  const wrap = document.getElementById('ajStrip'); if(activeTimers.length===0){ wrap.classList.remove('show'); wrap.innerHTML=''; return; }
   wrap.classList.add('show');
   wrap.innerHTML = activeTimers.map(j=>{
     const r=j.getRem(); const m=Math.floor(r/60), s=r%60;
@@ -955,11 +777,7 @@ function updateActiveJokers(){
 }
 
 function toast(msg, err){
-  const t = document.createElement('div');
-  t.className = 'toast' + (err?' err':'');
-  t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),2200);
+  const t = document.createElement('div'); t.className = 'toast' + (err?' err':''); t.textContent = msg; document.body.appendChild(t); setTimeout(()=>t.remove(),2200);
 }
 </script>
 </body>
