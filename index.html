@@ -24,7 +24,9 @@
  3. QUIZFRAGEN        → Objekt QUIZZES
     Jede Frage:  {lvl:1, q:'Frage', opts:['A','B','C','D'], a:0,
                   fact:'Gut zu wissen …', tip:'Hinweis nach 2 Fehlern',
-                  r:true /* = Rätsel-Badge */}
+                  r:true    /* = Rätsel-Badge */,
+                  long:true /* = Knobelaufgabe-Badge + "Lasst euch Zeit" */}
+    Die Antwortliste darf 2, 3 oder 4 Einträge haben (z. B. Ja/Nein-Fragen).
     lvl 1 = LEICHT, 2 = MITTEL, 3 = PROFI  ·  a = Index ab 0
     Fragen einfach ergänzen oder löschen — die App zählt automatisch.
 
@@ -280,6 +282,8 @@ button{font-family:inherit;}
 .dots i.done{background:var(--g);border-color:var(--g);}
 .dots i.cur{background:var(--am);border-color:var(--am);animation:bl 1s infinite;}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
+.longnote{text-align:center;font-size:.74rem;color:var(--am);border:1px dashed rgba(255,176,46,.5);
+  border-radius:var(--rs);padding:8px 10px;margin:-6px 0 14px;line-height:1.5;}
 .q{font-size:1rem;color:var(--w);line-height:1.65;text-align:center;margin-bottom:16px;white-space:pre-line;}
 .opts{display:flex;flex-direction:column;gap:9px;}
 .opt{padding:14px;border:1px solid var(--line);border-radius:var(--rs);background:var(--bg2);color:var(--w);
@@ -703,18 +707,18 @@ const STATIONS = [
    desc:'Der Gruppenleiter zeigt einmal, wie ein Druckverband angelegt wird. Dann legt ihr euch gegenseitig einen Druckverband am Unterarm an — jeder ist einmal dran!'},
   {id:2, name:'Kreisverkehr Industriegebiet', hint:'beim Schuh-Beck', task:'Stabile Seitenlage', icon:'🔄', code:'8146', type:'gl', challenge:'sort',
    desc:'Jeder bringt einmal jemanden in die stabile Seitenlage — und wird einmal selbst gedreht. Der Gruppenleiter hilft und prüft.'},
-  {id:3, name:'Markant', hint:'', task:'Großes Erste-Hilfe-Quiz', icon:'🛒', code:'2953', type:'phone', challenge:'eh_gross',
-   desc:'Reine Handy-Mission: das große Erste-Hilfe-Quiz. Es startet ganz leicht und wird Stufe für Stufe kniffliger — beratet euch als Team!'},
+  {id:3, name:'Markant', hint:'', task:'Großes Erste-Hilfe- & DRK-Quiz', icon:'🛒', code:'2953', type:'phone', challenge:'eh_gross',
+   desc:'Reine Handy-Mission: das große Erste-Hilfe- und DRK-Quiz mit 17 Fragen. Es startet ganz leicht und wird Stufe für Stufe kniffliger — am Ende warten zwei echte Knobelaufgaben. Beratet euch als Team!'},
   {id:4, name:'Spielplatz Hölderlinstraße', hint:'', task:'Eierlauf (Verbandspäckle)', icon:'🥚', code:'7401', type:'gl', challenge:'catch',
    desc:'Staffel: Tragt das Verbandspäckle auf dem Löffel über die Strecke, ohne dass es runterfällt. Fällt es, geht es an der Stelle weiter. Alle laufen einmal!'},
   {id:5, name:'Spielplatz beim Gekeler', hint:'', task:'Fingerkuppenpflaster', icon:'🩹', code:'6284', type:'gl', challenge:'memory',
    desc:'Jeder schneidet ein Fingerkuppenpflaster richtig zu und klebt es einem anderen (oder sich selbst) sauber an den Finger.'},
   {id:6, name:'Lärchenweg', hint:'Richtung Grabenstetten', task:'Verbandskasten erforschen', icon:'🧰', code:'1937', type:'gl', challenge:'eh_kasten',
-   desc:'Erforscht den Verbandskasten: Jeder sucht ein Teil heraus und erklärt, wofür man es braucht. Zusammen mindestens 5 Teile richtig erklären.'},
+   desc:'Nehmt nacheinander verschiedene Sachen aus dem Verbandskasten heraus und legt sie vor euch hin. Zu jedem Teil sagt ihr: Was ist das? Wofür braucht man es? Was kann man damit machen? Jeder nimmt mindestens ein Teil — zusammen erklärt ihr mindestens 5 verschiedene Sachen. Danach räumt ihr alles wieder ordentlich ein.'},
   {id:7, name:'Hinterm Friedhof', hint:'', task:'Unfallstelle absichern', icon:'⚠️', code:'4568', type:'gl', challenge:'reflex',
-   desc:'Sichert die Unfallstelle ab: Warnweste anziehen, Warndreieck mit genug Abstand aufstellen — und erklärt, warum das immer zuerst kommt.'},
-  {id:8, name:'Brenntengasse / Eiergängle', hint:'', task:'Großes Wissens- & Rätselquiz', icon:'📱', code:'3729', type:'phone', challenge:'wissen_gross',
-   desc:'Die zweite reine Handy-Mission: Wissensfragen, Denkaufgaben und Rätsel — von leicht bis Profi. Beratet euch als Team!'},
+   desc:'Spielt eine Unfallstelle nach: Zuerst Warnweste anziehen, dann das Warndreieck mit genug Abstand aufstellen (innerorts etwa 50 große Schritte vor der Unfallstelle). Danach erklärt ihr eurem Gruppenleiter: Warum kommt das Absichern immer ZUERST? Wie schützt ihr euch dabei selbst? Was macht ihr als Nächstes (Verletzte ansprechen, Notruf 112)? Und warum darf man an einer Unfallstelle nicht gaffen oder filmen, sondern muss helfen oder Platz machen?'},
+  {id:8, name:'Brenntengasse / Eiergängle', hint:'', task:'Wissen, Rätsel & Knobeleien', icon:'📱', code:'3729', type:'phone', challenge:'wissen_gross',
+   desc:'Die zweite reine Handy-Mission: 18 Aufgaben aus Allgemeinwissen, Denksport und Rätseln — von leicht bis Profi. Zwei davon sind richtige Knobelaufgaben, da lohnt sich Stift und Papier.'},
 ];
 
 const GROUPS = [{n:1,e:'🔴'},{n:2,e:'🔵'},{n:3,e:'🟢'},{n:4,e:'🟡'}];
@@ -722,97 +726,124 @@ const GROUPS = [{n:1,e:'🔴'},{n:2,e:'🔵'},{n:3,e:'🟢'},{n:4,e:'🟡'}];
 /* ══ QUIZZES ══  lvl 1=LEICHT 2=MITTEL 3=PROFI · a = Index ab 0 · r:true = Rätsel */
 const QUIZZES = {
 
-  eh_basis: {name:'🧠 ERSTE-HILFE-QUIZ', desc:'5 Fragen rund ums Helfen — beratet euch als Team!', items:[
-    {lvl:1, q:'Welche Nummer rufst du im Notfall an?', opts:['110','112','115','116'], a:1,
+  eh_basis: {name:'🧠 ERSTE-HILFE-QUIZ', desc:'Kurze Runde rund ums Helfen — beratet euch als Team!', items:[
+    {lvl:1, q:'Welche Nummer rufst du im Notfall an?', opts:['110','112','116 117','19222'], a:1,
      fact:'Die 112 gilt in ganz Europa, ist kostenlos und geht sogar ohne Guthaben.'},
-    {lvl:1, q:'Wer darf Erste Hilfe leisten?', opts:['Nur Ärzte','Nur Erwachsene','Jeder — auch Kinder!','Nur Sanitäter'], a:2,
-     fact:'Der einzige Fehler ist, gar nichts zu tun. Helfen kann jeder!'},
-    {lvl:1, q:'Wofür ist ein Druckverband da?', opts:['Gegen Kopfweh','Um starke Blutungen zu stoppen','Bei Sonnenbrand','Gegen Bauchweh'], a:1,
+    {lvl:1, q:'Stimmt das?\n„Auch Kinder dürfen Erste Hilfe leisten."', opts:['Ja, stimmt','Nein, stimmt nicht'], a:0,
+     fact:'Der einzige Fehler ist, gar nichts zu tun. Helfen darf und soll jeder.'},
+    {lvl:1, q:'Wofür ist ein Druckverband da?', opts:['Gegen Kopfweh','Um starke Blutungen zu stoppen','Bei Sonnenbrand'], a:1,
      fact:'Der Druck presst die Wunde zu — so verliert der Verletzte weniger Blut.'},
-    {lvl:2, q:'Eine Wunde blutet stark.\nWas machst du zuerst?', opts:['Pflaster suchen gehen','Fest draufdrücken und hochhalten','Draufpusten','Mit Wasser abwaschen'], a:1,
-     tip:'Denk daran: Was stoppt Blut am schnellsten?',
+    {lvl:2, q:'Eine Wunde blutet stark.\nWas machst du zuerst?', opts:['Erst einmal Pflaster suchen gehen','Fest draufdrücken und den Arm hochhalten','Die Wunde mit Wasser abwaschen','Draufpusten'], a:1,
+     tip:'Was stoppt Blut am allerschnellsten?',
      fact:'Draufdrücken wirkt sofort — den Verbandskasten holt jemand anderes.'},
-    {lvl:2, q:'Was sagst du beim Notruf als Erstes?', opts:['Deinen Geburtstag','WO es passiert ist','Wie das Wetter ist','Wie du heißt'], a:1,
-     fact:'Ohne den Ort findet niemand den Verletzten — deshalb kommt er zuerst.'},
-    {lvl:3, q:'Warum ziehen Ersthelfer Einmalhandschuhe an?', opts:['Damit die Hände sauber bleiben','Zum Schutz vor Krankheitserregern','Weil es cooler aussieht','Damit man besser greift'], a:1,
-     fact:'Selbstschutz geht immer vor: Erst schützen, dann helfen.'},
+    {lvl:2, q:'Was sagst du beim Notruf als Erstes?', opts:['Deinen Namen','WO es passiert ist','Deinen Geburtstag'], a:1,
+     fact:'Ohne den Ort findet euch niemand — deshalb kommt er zuerst.'},
+    {lvl:3, q:'Warum ziehen Ersthelfer Einmalhandschuhe an?', opts:['Damit die Hände sauber bleiben','Zum Schutz vor Krankheitserregern','Damit man besser greifen kann','Weil es dazugehört'], a:1,
+     fact:'Selbstschutz geht immer vor: erst schützen, dann helfen.'},
   ]},
 
   eh_kasten: {name:'🧰 ERSTE-HILFE-QUIZ', desc:'Alles rund um den Verbandskasten und das richtige Handeln.', items:[
     {lvl:1, q:'Was davon gehört in einen Verbandskasten?', opts:['Schokolade','Rettungsdecke','Taschenlampe','Kaugummi'], a:1,
-     fact:'Im Verbandskasten steckt viel mehr als Pflaster — schaut euch alles genau an!'},
-    {lvl:1, q:'Wofür ist die Rettungsdecke?', opts:['Zum Picknicken','Sie schützt vor Kälte, Nässe und Wind','Als Regenschirm','Zum Verstecken'], a:1,
+     fact:'Im Kasten steckt viel mehr als Pflaster — schaut euch alles genau an!'},
+    {lvl:1, q:'Wofür ist die Rettungsdecke gut?', opts:['Zum Picknicken','Sie schützt vor Kälte, Nässe und Wind','Als Regenschirm'], a:1,
      fact:'Ein Verletzter kühlt schnell aus — Wärme ist echte Erste Hilfe.'},
-    {lvl:2, q:'Jemand ist bewusstlos, atmet aber normal.\nWas tust du?', opts:['Aufsetzen und Wasser geben','Kräftig schütteln','Stabile Seitenlage und Notruf','Alleine lassen'], a:2,
+    {lvl:2, q:'Jemand ist bewusstlos, atmet aber normal.\nWas tust du?', opts:['Aufsetzen und Wasser geben','Kräftig schütteln','Stabile Seitenlage und Notruf','Alleine lassen und Hilfe holen'], a:2,
      fact:'In der Seitenlage bleiben die Atemwege frei — das rettet Leben.'},
-    {lvl:2, q:'Du hast dir die Hand verbrannt.\nWas hilft zuerst?', opts:['Mit kühlem Wasser kühlen','Butter draufschmieren','Fest einbinden','Pusten und warten'], a:0,
-     tip:'Etwas Kühles hilft — aber bitte nichts Eiskaltes.',
-     fact:'Etwa 10 Minuten mit kühlem (nicht eiskaltem) Wasser kühlen. Eis direkt auf die Haut schadet.'},
-    {lvl:2, q:'Wofür braucht man ein Dreiecktuch?', opts:['Als Tischdecke','Als Armtragetuch und für Verbände','Zum Nasenputzen','Als Fahne'], a:1,
-     fact:'Ein Dreiecktuch ist das Multitalent im Kasten: Tragetuch, Verband, Polster.'},
-    {lvl:3, q:'Warum steht auf Verbandsmaterial\nein Verfallsdatum?', opts:['Damit man neues kaufen muss','Weil es dann nicht mehr keimfrei ist','Es ist nur Deko','Damit es teurer wird'], a:1,
-     fact:'Steriles Material darf nicht abgelaufen sein — sonst kann die Wunde sich entzünden.'},
+    {lvl:2, q:'Wofür braucht man ein Dreiecktuch?', opts:['Als Tischdecke','Als Armtragetuch und für Verbände','Zum Nasenputzen'], a:1,
+     fact:'Das Dreiecktuch ist das Multitalent im Kasten: Tragetuch, Verband, Polster.'},
+    {lvl:2, q:'Stimmt das?\n„Verbandsmaterial hält ewig."', opts:['Ja, stimmt','Nein, es hat ein Verfallsdatum'], a:1,
+     fact:'Abgelaufenes Material ist nicht mehr keimfrei — die Wunde könnte sich entzünden.'},
+    {lvl:3, q:'Ihr habt kein passendes Pflaster dabei.\nWas ist die beste Lösung?', opts:['Ein Taschentuch mit Tesafilm festkleben','Eine Wundauflage mit einer Mullbinde befestigen','Die Wunde offen lassen und weiterlaufen','Ein Stück Stoff vom T-Shirt reißen'], a:1,
+     fact:'Wundauflage plus Binde ist der Klassiker — sauber, sicher und in jedem Kasten dabei.'},
   ]},
 
-  eh_gross: {name:'🚑 DAS GROSSE ERSTE-HILFE-QUIZ', desc:'12 Fragen in drei Stufen: erst leicht, dann kniffliger. Beratet euch — ihr schafft das gemeinsam!', items:[
-    {lvl:1, q:'Wie lautet die Notrufnummer\nfür Rettungsdienst und Feuerwehr?', opts:['110','112','116117','19222'], a:1,
+  eh_gross: {name:'🚑 DAS GROSSE ERSTE-HILFE- & DRK-QUIZ', desc:'17 Fragen in drei Stufen: erst leicht, dann kniffliger. Beratet euch — gemeinsam schafft ihr das!', items:[
+    {lvl:1, q:'Wie lautet die Notrufnummer\nfür Rettungsdienst und Feuerwehr?', opts:['110','112','116 117','19222'], a:1,
      fact:'112 in ganz Europa. Die 110 ist die Polizei.'},
-    {lvl:1, q:'Wofür steht das Zeichen\n„rotes Kreuz auf weißem Grund"?', opts:['Für eine Apotheke','Für Hilfe und Schutz','Für ein Krankenhaus-Parkhaus','Für einen Erste-Hilfe-Kurs'], a:1,
-     fact:'Das rote Kreuz ist ein weltweites Schutzzeichen — wer es trägt, darf nicht angegriffen werden.'},
-    {lvl:1, q:'Ein Kind stürzt und hat eine Schürfwunde\nam Knie. Was tust du zuerst?', opts:['Weiterspielen lassen','Trösten und die Wunde anschauen','Sofort 112 rufen','Die Wunde fest zudrücken'], a:1,
-     fact:'Trösten ist echte Erste Hilfe. Danach: Wunde ansehen und abdecken.'},
-    {lvl:1, q:'Nasenbluten — wie ist es richtig?', opts:['Kopf in den Nacken legen','Kopf nach vorne beugen, Nacken kühlen','Flach hinlegen','Nase zuhalten und Kopf zurück'], a:1,
-     fact:'Kopf nach vorne, damit kein Blut in den Hals läuft. Nach 20 Minuten zum Arzt.'},
-    {lvl:2, q:'Was ist beim Notruf am wichtigsten?', opts:['Schnell wieder auflegen','Genau sagen, WO es passiert ist','Den Namen buchstabieren','Die Uhrzeit nennen'], a:1,
-     fact:'Merksatz: Wo? Was? Wie viele? Welche Verletzungen? Warten auf Rückfragen.'},
-    {lvl:2, q:'Wann darfst du beim Notruf auflegen?', opts:['Sofort nach der Adresse','Wenn es zu lange dauert','Wenn die Leitstelle es sagt','Nach genau einer Minute'], a:2,
-     fact:'Die Leitstelle beendet das Gespräch — sie hat oft noch wichtige Fragen.'},
-    {lvl:2, q:'Wie prüfst du, ob jemand atmet?', opts:['An den Füßen kitzeln','Sehen, hören, fühlen — max. 10 Sekunden','Laut rufen und warten','Den Puls am Daumen suchen'], a:1,
-     fact:'Brustkorb sehen, Atem hören, Luft an der Wange fühlen — höchstens 10 Sekunden lang.'},
-    {lvl:2, q:'Jemandem ist nach langer Sonne schlecht,\nder Kopf ist heiß und rot. Was hilft?', opts:['Weiter in die Sonne setzen','In den Schatten, Kopf kühlen, trinken','Schnell weiterlaufen','Heißen Tee geben'], a:1,
-     fact:'Sonnenstich: Schatten, Oberkörper leicht erhöht, Kopf kühlen — und beobachten.'},
-    {lvl:3, q:'Wespenstich im Mund oder Hals —\nwas ist richtig?', opts:['Abwarten, das ist harmlos','Etwas Kaltes lutschen und 112 rufen','Heißen Tee trinken','Kräftig husten'], a:1,
+    {lvl:1, q:'Wofür stehen die drei Buchstaben DRK?', opts:['Deutsches Rotes Kreuz','Deutscher Rettungs-Klub','Dienst für Rettung und Krankenpflege'], a:0,
+     fact:'Das DRK gibt es seit 1863 — und in fast jedem Ort einen Ortsverein, so wie hier.'},
+    {lvl:1, q:'Wie heißt die Jugendorganisation\ndes Deutschen Roten Kreuzes?', opts:['Jugendrotkreuz (JRK)','Rotkreuz-Jugend','DRK-Junioren'], a:0,
+     fact:'Genau da seid ihr heute unterwegs — beim JRK Römerstein!'},
+    {lvl:1, q:'Was bedeutet das rote Kreuz\nauf weißem Grund?', opts:['Hier gibt es Pflaster zu kaufen','Ein weltweites Schutzzeichen für Helfer','Eine Apotheke','Ein Krankenhaus-Parkplatz'], a:1,
+     fact:'Wer dieses Zeichen trägt, darf auch im Krieg nicht angegriffen werden.'},
+    {lvl:1, q:'Stimmt das?\n„Wer hilft, kann etwas falsch machen\nund wird dafür bestraft."', opts:['Ja, stimmt','Nein, stimmt nicht'], a:1,
+     fact:'Falsch ist nur, gar nicht zu helfen. Wer hilft, ist immer auf der sicheren Seite.'},
+    {lvl:2, q:'Was gehört NICHT in einen Notruf?', opts:['Wo es passiert ist','Was passiert ist','Wie viele Verletzte es gibt','Wie das Wetter morgen wird'], a:3,
+     fact:'Merksatz: Wo? Was? Wie viele? Welche Verletzungen? Und dann auf Rückfragen warten.'},
+    {lvl:2, q:'Nasenbluten — wie macht ihr es richtig?', opts:['Kopf in den Nacken legen','Kopf nach vorne beugen und den Nacken kühlen','Flach auf den Rücken legen'], a:1,
+     fact:'Kopf nach vorne, damit kein Blut in den Hals läuft. Hört es nach 20 Minuten nicht auf: zum Arzt.'},
+    {lvl:2, q:'Wie prüft ihr, ob jemand atmet?', opts:['Am Handgelenk den Puls suchen','Sehen, hören, fühlen — höchstens 10 Sekunden','An den Füßen kitzeln','Einen Spiegel vor den Mund halten'], a:1,
+     fact:'Brustkorb sehen, Atem hören, Luft an der Wange fühlen.'},
+    {lvl:2, q:'Verbrennung an der Hand — was hilft?', opts:['10 Minuten kühles Wasser darüberlaufen lassen','Eiswürfel direkt drauflegen','Zahnpasta auftragen','Fest verbinden und abwarten'], a:0,
+     tip:'Etwas Kühles hilft — aber bitte nichts Eiskaltes.',
+     fact:'Kühles, nicht eiskaltes Wasser. Eis direkt auf der Haut schadet zusätzlich.'},
+    {lvl:2, q:'Wer hatte die Idee zum Roten Kreuz?', opts:['Henry Dunant','Florence Nightingale','Robert Koch','Wilhelm Conrad Röntgen'], a:0,
+     fact:'Dunant sah 1859 nach der Schlacht von Solferino tausende Verwundete — und bekam später den ersten Friedensnobelpreis.'},
+    {lvl:2, q:'Wie viele Rotkreuz-Grundsätze gibt es?', opts:['3','5','7','12'], a:2,
+     fact:'Menschlichkeit, Unparteilichkeit, Neutralität, Unabhängigkeit, Freiwilligkeit, Einheit und Universalität.'},
+    {lvl:2, q:'Jemandem ist nach langer Sonne schlecht,\nder Kopf ist heiß und rot. Was hilft?', opts:['Weiter in der Sonne bleiben','In den Schatten, Oberkörper erhöht, Kopf kühlen','Schnell weiterlaufen','Heißen Tee trinken'], a:1,
+     fact:'Sonnenstich: Schatten, kühlen, trinken — und beobachten, ob es besser wird.'},
+    {lvl:3, long:true, q:'KNOBELAUFGABE\n\nIhr seht, wie jemand mit dem Fahrrad\nauf einer schmalen Straße stürzt.\nEr blutet am Knie, Autos fahren vorbei.\n\nIn welcher Reihenfolge macht ihr es richtig?', opts:[
+      'Sofort hinrennen und das Fahrrad wegziehen',
+      'Erst auf den Verkehr achten und sichern, dann ansprechen, dann Hilfe holen, dann die Wunde versorgen',
+      'Erst ein Foto machen, dann 112 rufen, dann warten',
+      'Erst nach Hause laufen und Bescheid sagen'], a:1,
+     tip:'Was passiert, wenn ihr selbst angefahren werdet? Wem ist dann geholfen?',
+     fact:'Eigenschutz zuerst! Erst wenn die Stelle sicher ist, könnt ihr wirklich helfen.'},
+    {lvl:3, q:'Wespenstich im Mund oder im Hals —\nwas ist richtig?', opts:['Abwarten, das ist harmlos','Etwas Kaltes lutschen und sofort 112 rufen','Heißen Tee trinken'], a:1,
      fact:'Im Mund kann alles zuschwellen — das ist ein echter Notfall.'},
     {lvl:3, q:'Warum legt man Bewusstlose\nin die stabile Seitenlage?', opts:['Damit sie bequemer liegen','Damit die Atemwege frei bleiben','Damit sie schneller aufwachen','Damit man sie besser tragen kann'], a:1,
-     fact:'Der Kopf liegt tief, der Mund ist der tiefste Punkt — Erbrochenes kann abfließen.'},
+     fact:'Der Mund ist der tiefste Punkt — Erbrochenes kann abfließen, statt in die Lunge zu laufen.'},
     {lvl:3, q:'Wo drückt man bei einer\nHerzdruckmassage?', opts:['Auf den Bauch','In der Mitte des Brustkorbs','Auf die linke Schulter','Auf den Hals'], a:1,
      fact:'Mitte des Brustkorbs, 100–120 Mal pro Minute — im Takt von „Stayin\' Alive".'},
-    {lvl:3, q:'Was ist ein AED (Defibrillator)?', opts:['Ein Verbandskasten','Ein Gerät, das dem Herz mit einem Stromstoß hilft','Ein Krankenwagen','Eine Trage'], a:1,
-     fact:'Ein AED spricht mit dir und erklärt jeden Schritt — falsch machen kann man nichts.'},
+    {lvl:3, long:true, q:'KNOBELAUFGABE\n\nIhr kommt zu einer Unfallstelle.\nDrei Personen sind verletzt:\n\n• Einer schreit ganz laut\n• Einer jammert und hält seinen Arm\n• Einer liegt still da und rührt sich nicht\n\nUm wen kümmert ihr euch zuerst?', opts:[
+      'Um den, der am lautesten schreit',
+      'Um den mit dem verletzten Arm',
+      'Um den, der still daliegt',
+      'Um alle drei gleichzeitig'], a:2,
+     tip:'Überlegt: Wer schreien kann, kann auch …?',
+     fact:'Wer schreit, atmet auf jeden Fall. Der Stille braucht euch am dringendsten — ihn zuerst ansprechen und die Atmung prüfen!'},
   ]},
 
-  wissen_gross: {name:'🌍 WISSEN & RÄTSEL', desc:'14 Aufgaben: Wissen, Denksport und Rätsel — von leicht bis Profi. Köpfe zusammenstecken!', items:[
+  wissen_gross: {name:'🌍 WISSEN, RÄTSEL & KNOBELEIEN', desc:'18 Aufgaben in drei Stufen — Wissen, Denksport und echte Rätsel. Köpfe zusammenstecken!', items:[
     {lvl:1, q:'Wie viele Beine hat eine Spinne?', opts:['6','8','10','12'], a:1,
      fact:'Insekten haben 6 Beine, Spinnen 8 — deshalb sind Spinnen keine Insekten.'},
+    {lvl:1, q:'Stimmt das?\n„Ein Blitz ist heißer als\ndie Oberfläche der Sonne."', opts:['Ja, stimmt','Nein, stimmt nicht'], a:0,
+     fact:'Ein Blitz wird bis zu 30.000 °C heiß — die Sonnenoberfläche hat „nur" rund 5.500 °C.'},
     {lvl:1, q:'Wie viele Bundesländer hat Deutschland?', opts:['12','14','16','18'], a:2,
      fact:'Baden-Württemberg ist eines davon — und ihr steht mittendrin.'},
-    {lvl:1, q:'Welche Farbe entsteht,\nwenn man Blau und Gelb mischt?', opts:['Lila','Orange','Grün','Braun'], a:2},
-    {lvl:1, q:'RÄTSEL:\nWas wird nass, während es trocknet?', opts:['Der Regen','Das Handtuch','Die Sonne','Der Schwamm im Schrank'], a:1, r:true,
-     tip:'Ihr benutzt es jeden Tag nach dem Duschen.',
-     fact:'Klassiker! Das Handtuch trocknet dich — und wird dabei selber nass.'},
-    {lvl:1, q:'Welches Organ pumpt das Blut\ndurch deinen Körper?', opts:['Lunge','Herz','Magen','Leber'], a:1,
-     fact:'Dein Herz schlägt etwa 100.000 Mal am Tag — ohne Pause.'},
+    {lvl:1, q:'RÄTSEL\n\nWas wird nass,\nwährend es trocknet?', opts:['Der Regen','Das Handtuch','Der Schwamm im Schrank','Die Sonne'], a:1, r:true,
+     tip:'Ihr benutzt es jeden Tag nach dem Duschen.'},
+    {lvl:1, q:'Welche Farbe entsteht,\nwenn man Blau und Gelb mischt?', opts:['Lila','Orange','Grün'], a:2},
+    {lvl:1, q:'Welches Tier kann im Stehen schlafen?', opts:['Pferd','Kaninchen','Fuchs','Frosch'], a:0,
+     fact:'Pferde können im Stehen dösen — ihre Beine haben dafür eine Art eingebaute Feststellbremse.'},
     {lvl:2, q:'Welcher Planet ist der Sonne am nächsten?', opts:['Venus','Mars','Merkur','Jupiter'], a:2,
-     fact:'Merkur ist der schnellste Planet — ein Jahr dauert dort nur 88 Erdtage.'},
-    {lvl:2, q:'RÄTSEL:\nIch habe Städte, aber keine Häuser.\nIch habe Wälder, aber keine Bäume.\nWas bin ich?', opts:['Ein Traum','Eine Landkarte','Ein Buch','Ein Bild'], a:1, r:true,
-     tip:'Ihr habt so etwas in dieser App auch dabei.',
-     fact:'Eine Landkarte — genau wie euer Kartentab!'},
-    {lvl:2, q:'Welches Tier ist das größte der Welt?', opts:['Elefant','Blauwal','Giraffe','Weißer Hai'], a:1,
-     fact:'Ein Blauwal wird bis zu 30 Meter lang — länger als drei Autos hintereinander.'},
-    {lvl:2, q:'DENKAUFGABE:\nEin Bauer hat 17 Schafe.\nAlle bis auf 9 laufen weg.\nWie viele hat er noch?', opts:['8','9','17','0'], a:1, r:true,
-     tip:'Lest die Aufgabe nochmal ganz langsam vor.',
+     fact:'Auf dem Merkur dauert ein Jahr nur 88 Erdtage.'},
+    {lvl:2, q:'RÄTSEL\n\nIch habe Städte, aber keine Häuser.\nIch habe Wälder, aber keine Bäume.\nWas bin ich?', opts:['Ein Traum','Eine Landkarte','Ein Buch','Ein Gemälde'], a:1, r:true,
+     tip:'So etwas habt ihr in dieser App auch dabei.'},
+    {lvl:2, q:'DENKAUFGABE\n\nEin Bauer hat 17 Schafe.\nAlle bis auf 9 laufen weg.\nWie viele hat er noch?', opts:['8','9','17','Keins'], a:1, r:true,
+     tip:'Lest die Aufgabe noch einmal ganz langsam vor.',
      fact:'„Alle bis auf 9" heißt: 9 bleiben da. Genau lesen lohnt sich!'},
-    {lvl:2, q:'Wie heißt das Gebirge,\nin dem Böhringen liegt?', opts:['Schwarzwald','Schwäbische Alb','Allgäu','Odenwald'], a:1,
+    {lvl:2, q:'In welchem Gebirge liegt Böhringen?', opts:['Schwarzwald','Schwäbische Alb','Allgäu','Odenwald'], a:1,
      fact:'Die Schwäbische Alb ist berühmt für ihre Höhlen — einige gehören zum Weltkulturerbe.'},
-    {lvl:3, q:'RÄTSEL:\nJe mehr du davon nimmst,\ndesto größer wird es.\nWas ist es?', opts:['Der Berg','Das Loch','Der Schatten','Das Wasser'], a:1, r:true,
-     tip:'Stellt euch jemanden mit einer Schaufel vor.'},
-    {lvl:3, q:'DENKAUFGABE:\n3 Katzen fangen in 3 Minuten 3 Mäuse.\nWie lange brauchen 100 Katzen\nfür 100 Mäuse?', opts:['3 Minuten','33 Minuten','100 Minuten','300 Minuten'], a:0, r:true,
+    {lvl:2, q:'Stimmt das?\n„Auf dem Mond weht kein Wind."', opts:['Ja, stimmt','Nein, stimmt nicht'], a:0,
+     fact:'Keine Luft, kein Wind — deshalb sind die Fußspuren der Astronauten noch immer da.'},
+    {lvl:2, q:'RÄTSEL\n\nWas hat einen Hals,\naber keinen Kopf?', opts:['Die Flasche','Der Schuh','Die Uhr','Der Löffel'], a:0, r:true},
+    {lvl:2, q:'Wie viele Sekunden hat eine Stunde?', opts:['600','1.800','3.600','6.000'], a:2,
+     fact:'60 × 60 = 3.600. In 5 Minuten sind es 300 — genau euer Standort-Takt!'},
+    {lvl:3, long:true, q:'KNOBELAUFGABE\n\nEin Bauer will einen Wolf, eine Ziege\nund einen Kohlkopf über den Fluss bringen.\nIm Boot ist nur Platz für ihn und EIN Ding.\n\nAllein gelassen frisst der Wolf die Ziege\nund die Ziege den Kohl.\n\nWie viele Überfahrten braucht er\nMINDESTENS?', opts:['5','6','7','9'], a:2, r:true,
+     tip:'Er darf auch etwas wieder mit zurücknehmen!',
+     fact:'7 Fahrten: Ziege rüber – zurück – Kohl rüber – Ziege zurück – Wolf rüber – zurück – Ziege rüber. Fertig!'},
+    {lvl:3, q:'DENKAUFGABE\n\n3 Katzen fangen in 3 Minuten 3 Mäuse.\nWie lange brauchen 100 Katzen\nfür 100 Mäuse?', opts:['3 Minuten','33 Minuten','100 Minuten','300 Minuten'], a:0, r:true,
      tip:'Wie lange braucht EINE Katze für EINE Maus?',
-     fact:'Jede Katze braucht 3 Minuten für ihre Maus — egal wie viele Katzen es sind.'},
-    {lvl:3, q:'Wie viele Sekunden hat eine Stunde?', opts:['600','1800','3600','6000'], a:2,
-     fact:'60 Sekunden × 60 Minuten = 3600. In 5 Minuten sind das 300 — genau euer Standort-Takt!'},
-    {lvl:3, q:'RÄTSEL:\nWas geht hoch und runter\nund bleibt trotzdem am selben Ort?', opts:['Der Fahrstuhl','Die Treppe','Der Vogel','Die Sonne'], a:1, r:true,
+     fact:'Jede Katze braucht 3 Minuten für ihre Maus — egal, wie viele Katzen mitmachen.'},
+    {lvl:3, long:true, q:'KNOBELAUFGABE\n\nVor 5 Jahren war deine Mutter\nVIERmal so alt wie du.\nHeute ist sie DREImal so alt wie du.\n\nWie alt bist du heute?', opts:['10','12','15','18'], a:2, r:true,
+     tip:'Probiert die Antworten einfach der Reihe nach durch — am besten mit Stift und Papier.',
+     fact:'Du bist 15, deine Mutter 45. Vor 5 Jahren: 10 und 40 — genau viermal so alt.'},
+    {lvl:3, q:'RÄTSEL\n\nWas geht hoch und runter\nund bleibt trotzdem am selben Ort?', opts:['Der Fahrstuhl','Die Treppe','Der Vogel','Die Sonne'], a:1, r:true,
      tip:'Ihr geht fast jeden Tag darauf.'},
+    {lvl:3, q:'Stimmt das?\n„In der Schwäbischen Alb gibt es\nmehr als 2.500 Höhlen."', opts:['Ja, stimmt','Nein, es sind viel weniger'], a:0,
+     fact:'Die Alb ist eines der höhlenreichsten Gebiete Deutschlands — der Fels ist wie ein Schwamm.'},
   ]},
 };
 
@@ -1042,11 +1073,12 @@ function renderQ(){
   const c=qData[qi]; qFails=0;
   document.getElementById('chBox').innerHTML = `
     <div class="qtop">
-      <span class="lvl l${c.lvl}">${c.r?'🧩 RÄTSEL · ':''}${LVL[c.lvl]}</span>
+      <span class="lvl l${c.lvl}">${c.long?'🧠 KNOBELAUFGABE · ':c.r?'🧩 RÄTSEL · ':''}${LVL[c.lvl]}</span>
       <span class="qnum">${qi+1} / ${qData.length}</span>
     </div>
     <div class="dots">${qData.map((_,i)=>`<i class="${i<qi?'done':i===qi?'cur':''}"></i>`).join('')}</div>
     <div class="q">${c.q}</div>
+    ${c.long?'<div class="longnote">⏳ Lasst euch Zeit — hier lohnt sich gemeinsames Überlegen.</div>':''}
     <div class="opts">${c.opts.map((o,i)=>`<div class="opt" onclick="answer(${i})">${String.fromCharCode(65+i)}) ${o}</div>`).join('')}</div>
     <div class="fb" id="fb"></div>`;
 }
@@ -1316,7 +1348,7 @@ function resetCoords(){
 
 /* ═══════════════ SPIELLEITER ═══════════════ */
 const CH_NAME={eh_basis:'Erste-Hilfe-Quiz (6 Fragen)', eh_kasten:'Erste-Hilfe-Quiz (6 Fragen)',
-  eh_gross:'Großes EH-Quiz (12 Fragen, 3 Stufen)', wissen_gross:'Wissen & Rätsel (14 Aufgaben, 3 Stufen)',
+  eh_gross:'Großes EH- & DRK-Quiz (17 Fragen, 3 Stufen)', wissen_gross:'Wissen, Rätsel & Knobeleien (18 Aufgaben)',
   sort:'Reihenfolge-Spiel', catch:'Fang-Spiel (12 Treffer)', memory:'Memory (6 Paare)', reflex:'112-Reflex (8 Runden)'};
 function renderLocGrid(){
   document.getElementById('locGrid').innerHTML = STATIONS.map(st=>`
